@@ -1,0 +1,55 @@
+:root {
+  font-family: var(--sl-font-sans);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--sl-color-gray-50);
+  color: var(--sl-color-sky-950);
+}
+
+/* Heading */
+.heading {
+  margin-top: var(--sl-spacing-2x-large);
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: var(--sl-spacing-x-large);
+  max-width: 300px;
+}
+
+.heading div:first-child {
+  letter-spacing: 0.1rem;
+  font-size: var(--sl-font-size-x-large);
+  font-style: italic;
+  text-align: left;
+}
+
+.heading div:last-child {
+  font-size: var(--sl-font-size-3x-large);
+  width: fit-content;
+  margin-left: auto;
+}
+
+.highlight-blue {
+  background: linear-gradient(to top, var(--sl-color-primary-200) 40%, transparent 40%);
+}
+
+.highlight-red {
+  background: linear-gradient(to top, var(--sl-color-danger-200) 40%, transparent 40%);
+}
+
+.h-divider {
+  --width: 2px;
+  --color: var(--sl-color-danger-100);
+}
+
+/* Random */
+.button::part(base) {
+  color: var(--sl-color-sky-950);
+}
