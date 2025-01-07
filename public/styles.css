@@ -10,17 +10,34 @@ h3 {
 }
 
 body {
+  padding: 0 2rem;
   background-color: var(--sl-color-gray-50);
   color: var(--sl-color-sky-950);
 }
 
 /* Heading */
 .heading {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
   margin-top: var(--sl-spacing-2x-large);
-  margin-left: auto;
+  margin-left: 5rem;
   margin-right: auto;
   padding-bottom: var(--sl-spacing-x-large);
+}
+
+.heading > * {
+  flex: 1 1 auto;
+}
+
+.heading h1 {
   max-width: 300px;
+}
+
+.heading img {
+  opacity: 0.6;
+  object-fit: cover;
+  object-position: left 80%;
 }
 
 .heading div:first-child {
