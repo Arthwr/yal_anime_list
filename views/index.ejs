@@ -10,6 +10,7 @@
       type="module"
       src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.19.1/cdn/shoelace-autoloader.js"
     ></script>
+    <script src="js/scripts.js" defer></script>
     <title>YAL</title>
   </head>
   <body>
@@ -18,9 +19,31 @@
         <div><span class="highlight-red">your</span> special</div>
         <div class="highlight-blue">Anime List</div>
       </h1>
-      <img src="/assets/top-bg.jpg" alt="" height="130" width="auto"/>
+      <img src="/assets/top-bg.jpg" alt="" height="130" width="auto" />
     </div>
     <sl-divider class="h-divider"></sl-divider>
-    <section></section>
+    <section>
+      <div class="split-panel-divider">
+        <sl-split-panel style="--min: 250px; --max: 35%" position-in-pixels="250" snap="250px">
+          <sl-icon slot="divider" name="grip-vertical"></sl-icon>
+          <div slot="start" class="left">
+            <ul>
+              <li><a href="/">Everything</a></li>
+              <li><a href="/current">Watching</a></li>
+              <li><a href="/completed">Completed</a></li>
+              <li><a href="/plan">Plan to Watch</a></li>
+            </ul>
+          </div>
+          <div slot="end" class="right">
+            <search>
+              <form action="/" method="get">
+                <sl-input placeholder="Search" clearable></sl-input>
+                <sl-icon-button name="search" label="search">
+              </form>
+            </search>
+          </div>
+        </sl-split-panel>
+      </div>
+    </section>
   </body>
 </html>
