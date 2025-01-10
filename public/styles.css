@@ -23,7 +23,7 @@ body {
 }
 
 /* Heading */
-.heading {
+header {
   display: flex;
   align-items: center;
   gap: 3rem;
@@ -31,28 +31,28 @@ body {
   padding-bottom: var(--sl-spacing-x-large);
 }
 
-.heading > * {
+header > * {
   flex: 1 1 auto;
 }
 
-.heading h1 {
+header h1 {
   max-width: 300px;
 }
 
-.heading img {
+header img {
   opacity: 0.6;
   object-fit: cover;
   object-position: left 80%;
 }
 
-.heading div:first-child {
+header div:first-child {
   letter-spacing: 0.1rem;
   font-size: var(--sl-font-size-x-large);
   font-style: italic;
   text-align: left;
 }
 
-.heading div:last-child {
+header div:last-child {
   font-size: var(--sl-font-size-3x-large);
   width: fit-content;
   margin-left: auto;
@@ -72,6 +72,11 @@ body {
 }
 
 /* Split Panel */
+sl-split-panel {
+  --min: 250px;
+  --max: 35%;
+}
+
 .split-panel-divider sl-split-panel {
   --divider-width: 2px;
 }
@@ -92,26 +97,26 @@ body {
   background-color: var(--sl-color-danger-400);
 }
 
-.split-panel-divider sl-split-panel:focus-within sl-icon {
+.split-panel-divider sl-split-panel::part(divider):focus-visible sl-icon[name="grip-vertical"] {
   background-color: var(--sl-color-danger-400);
   color: var(--sl-color-neutral-0);
 }
 
 /* Left Side */
-.left {
+.left nav {
   display: flex;
   justify-content: center;
   height: 100vh;
-  padding-top: var(--sl-spacing-3x-large);
+  padding-top: var(--sl-spacing-2x-large);
   background: var(--sl-color-neutral-50);
   overflow: hidden;
 }
 
-.left ul {
+.left nav ul {
   display: flex;
   flex-direction: column;
   gap: var(--sl-spacing-2x-large);
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   letter-spacing: 0.05rem;
   font-weight: 500;
 }
@@ -129,7 +134,7 @@ body {
 
 .left a::before {
   content: "";
-  background-color: hsla(196, 61%, 58%, 0.75);
+  background-color: var(--sl-color-primary-200);
   position: absolute;
   left: 0;
   bottom: 3px;
@@ -144,23 +149,29 @@ body {
   height: 100%;
 }
 
-.right {
-  padding: var(--sl-spacing-2x-large) var(--sl-spacing-2x-large);
+/* Right Side */
+.right section {
+  padding: var(--sl-spacing-large) var(--sl-spacing-2x-large);
   height: 100vh;
   background: var(--sl-color-neutral-50);
   display: flex;
   overflow: hidden;
 }
 
-/* Right Side */
-search form {
+.right form {
+  width: 100%;
   display: flex;
-  align-items: center;
+  gap: var(--sl-spacing-medium);
+}
+
+search {
+  flex: 0 0 20%;
+  display: flex;
   gap: var(--sl-spacing-small);
 }
 
-search form > * {
-  flex: 1;
+search sl-input {
+  width: 100%;
 }
 
 sl-icon-button {

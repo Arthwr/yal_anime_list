@@ -14,36 +14,50 @@
     <title>YAL</title>
   </head>
   <body>
-    <div class="heading">
+    <header>
       <h1>
         <div><span class="highlight-red">your</span> special</div>
         <div class="highlight-blue">Anime List</div>
       </h1>
       <img src="/assets/top-bg.jpg" alt="" height="130" width="auto" />
-    </div>
+    </header>
     <sl-divider class="h-divider"></sl-divider>
-    <section>
+    <main>
       <div class="split-panel-divider">
-        <sl-split-panel style="--min: 250px; --max: 35%" position-in-pixels="250" snap="250px">
+        <sl-split-panel position-in-pixels="350" snap="350px">
           <sl-icon slot="divider" name="grip-vertical"></sl-icon>
           <div slot="start" class="left">
-            <ul>
-              <li><a href="/">Everything</a></li>
-              <li><a href="/current">Watching</a></li>
-              <li><a href="/completed">Completed</a></li>
-              <li><a href="/plan">Plan to Watch</a></li>
-            </ul>
+            <nav>
+              <ul>
+                <li><a href="/">Everything</a></li>
+                <li><a href="/current">Watching</a></li>
+                <li><a href="/completed">Completed</a></li>
+                <li><a href="/plan">Plan to Watch</a></li>
+              </ul>
+            </nav>
           </div>
           <div slot="end" class="right">
-            <search>
-              <form action="/" method="get">
-                <sl-input placeholder="Search" clearable></sl-input>
-                <sl-icon-button name="search" label="search">
+            <section>
+              <form action="/search" method="get">
+                <div class="genre">
+                  <sl-dropdown stay-open-on-select="true">
+                    <sl-button slot="trigger" caret>Choose Genre</sl-button>
+                    <sl-menu>
+                      <sl-menu-item type="checkbox">Isekai</sl-menu-item>
+                      <sl-menu-item type="checkbox">School Romance</sl-menu-item>
+                      <sl-menu-item type="checkbox">Comedy</sl-menu-item>
+                    </sl-menu>
+                  </sl-dropdown>
+                </div>
+                <search>
+                  <sl-input placeholder="Search" name="query" clearable></sl-input>
+                  <sl-icon-button type="submit" name="search" label="search"></sl-icon-button>
+                </search>
               </form>
-            </search>
+            </section>
           </div>
         </sl-split-panel>
       </div>
-    </section>
+    </main>
   </body>
 </html>
