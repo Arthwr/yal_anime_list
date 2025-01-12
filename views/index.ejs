@@ -26,65 +26,10 @@
       <div class="split-panel-divider">
         <sl-split-panel position-in-pixels="350" snap="350px">
           <sl-icon slot="divider" name="grip-vertical"></sl-icon>
-          <div slot="start" class="left">
-            <nav>
-              <ul>
-                <li><a href="/">Everything</a></li>
-                <li><a href="/current">Watching</a></li>
-                <li><a href="/completed">Completed</a></li>
-                <li><a href="/plan">Plan to Watch</a></li>
-              </ul>
-            </nav>
-          </div>
+          <%- include("partials/categories") %>
           <div slot="end" class="right">
-            <section class="form-container">
-              <form action="/search" method="get" id="search-form">
-                <div class="input-container">
-                  <div class="genre">
-                    <sl-select label="Genre" value="" multiple clearable max-options-visible="2">
-                      <sl-option value="isekai">Isekai</sl-option>
-                      <sl-option value="school-romance">School Romance</sl-option>
-                      <sl-option value="comedy">Comedy</sl-option>
-                      <sl-option value="fantasy">Fantasy</sl-option>
-                      <sl-option value="adventure">Adventure</sl-option>
-                      <sl-option value="detective">Detective</sl-option>
-                    </sl-select>
-                  </div>
-                  <div class="year">
-                    <sl-select label="Year" multiple clearable max-options-visible="2">
-                      <sl-option value="2025">2025</sl-option>
-                      <sl-option value="2024">2024</sl-option>
-                      <sl-option value="2023">2023</sl-option>
-                      <sl-option value="2022">2022</sl-option>
-                      <sl-option value="2021">2021</sl-option>
-                      <sl-option value="2020">2020</sl-option>
-                    </sl-select>
-                  </div>
-                  <div class="status">
-                    <sl-select label="Status">
-                      <sl-option value="ongoing">Ongoing</sl-option>
-                      <sl-option value="finished">Finished</sl-option>
-                      <sl-option value="not-aired">Not Yet Aired</sl-option>
-                    </sl-select>
-                  </div>
-                  <div class="season">
-                    <sl-select label="Season">
-                      <sl-option value="winter">Winter</sl-option>
-                      <sl-option value="spring">Spring</sl-option>
-                      <sl-option value="summer">Summer</sl-option>
-                      <sl-option value="fall">Fall</sl-option>
-                    </sl-select>
-                  </div>
-                </div>
-                <div class="search-container">
-                  <search>
-                    <sl-input label="Search" name="query" clearable></sl-input>
-                  </search>
-                  <sl-button type="submit" variant="primary" form="search-form">Search</sl-button>
-                </div>
-              </form>
-            </section>
-            <section></section>
+            <%- include ("partials/form") %>
+            <%- include("partials/result") %>
           </div>
         </sl-split-panel>
       </div>

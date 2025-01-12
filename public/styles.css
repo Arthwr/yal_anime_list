@@ -155,7 +155,6 @@ sl-split-panel {
   background: var(--sl-color-neutral-50);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   height: 100vh;
 }
 
@@ -252,6 +251,50 @@ sl-icon-button {
   .year {
     flex-basis: 50%;
   }
+}
+
+/* Result */
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--sl-spacing-medium);
+  justify-items: center;
+  padding: var(--sl-spacing-large);
+}
+
+/* Card */
+.card-overview {
+  width: 100%;
+  max-width: 350px;
+}
+
+.card-overview img {
+  max-width: 100%;
+  min-height: 350px;
+  object-fit: cover;
+  display: block;
+}
+
+sl-card::part(header) {
+  color: var(--sl-color-primary-500);
+  font-size: 1.25rem;
+  text-align: center;
+  --padding: var(--sl-spacing-2x-large);
+}
+
+.card-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.tag-group {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--sl-spacing-x-small);
 }
 
 /* Random */
