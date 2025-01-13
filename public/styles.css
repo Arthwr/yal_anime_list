@@ -58,6 +58,10 @@ header div:last-child {
   margin-left: auto;
 }
 
+main {
+  height: 100%;
+}
+
 .highlight-blue {
   background: linear-gradient(to top, var(--sl-color-primary-200) 40%, transparent 40%);
 }
@@ -75,6 +79,10 @@ header div:last-child {
 sl-split-panel {
   --min: 250px;
   --max: 35%;
+}
+
+sl-split-panel::part(panel) {
+  height: 100%;
 }
 
 .split-panel-divider sl-split-panel {
@@ -106,10 +114,8 @@ sl-split-panel {
 .left nav {
   display: flex;
   justify-content: center;
-  height: 100vh;
   padding-top: var(--sl-spacing-2x-large);
   background: var(--sl-color-neutral-50);
-  overflow: hidden;
 }
 
 .left nav ul {
@@ -155,7 +161,6 @@ sl-split-panel {
   background: var(--sl-color-neutral-50);
   display: flex;
   flex-direction: column;
-  height: 100vh;
 }
 
 .right .form-container {
