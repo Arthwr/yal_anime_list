@@ -1,7 +1,4 @@
-require("dotenv").config();
-const { Client } = require("pg");
-
-const SQL_CREATE_TABLE = `
+const SQL_CREATE_TABLES = `
 CREATE TABLE IF NOT EXISTS statuses (
     status_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     name VARCHAR(50) NOT NULL UNIQUE
@@ -45,40 +42,13 @@ CREATE TABLE IF NOT EXISTS anime_categories (
 );
 `;
 
-const SQL_TABLE_CREATION_CHECK = `
-SELECT table_name
-FROM information_schema.tables
-WHERE table_schema = 'public'
-  AND table_name IN ('statuses', 'anime_titles', 'genre_list', 'anime_genres', 'categories', 'anime_categories');
-`;
+const SQL_INSERT_DEFAULTV_STATUSES = `INSERT INTO statuses (name) VALUES ($1)`;
+const SQL_INSERT_DEFAULTV_CATEGORIES = `INSERT INTO categories (name) VALUES ($1)`;
+const SQL_INSERT_DEFAULTV_ANIME_GENRES_LIST = `INSERT INTO genre_list (name) VALUES ($1)`;
 
-async function main() {
-  console.log("Initiating connection to DB..");
-  const client = new Client({
-    connectionString: process.env.DATABASE_URL,
-  });
-
-  try {
-    await client.connect();
-    await client.query(SQL_CREATE_TABLE);
-    console.log("Table creation script executed");
-
-    const res = await client.query(SQL_TABLE_CREATION_CHECK);
-
-    if (res.rows.length > 0) {
-      console.log(
-        "Tables found: ",
-        res.rows.map((row) => row.table_name)
-      );
-    } else {
-      console.log("No tables found.");
-    }
-  } catch (error) {
-    console.error("Error while creating DB tables: ", error.message);
-  } finally {
-    await client.end();
-    console.log("Done with DB table creation operations.");
-  }
-}
-
-main();
+module.exports = {
+  SQL_CREATE_TABLES,
+  SQL_INSERT_DEFAULTV_STATUSES,
+  SQL_INSERT_DEFAULTV_CATEGORIES,
+  SQL_INSERT_DEFAULTV_ANIME_GENRES_LIST,
+};
