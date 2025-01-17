@@ -1,4 +1,4 @@
-require("dotenv").config({ path: "./.env.production" });
+require("dotenv").config();
 const { Client } = require("pg");
 
 const SQL_CREATE_TABLE = `
@@ -32,8 +32,7 @@ CREATE TABLE IF NOT EXISTS anime_genres (
 
 CREATE TABLE IF NOT EXISTS categories (
     category_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    name VARCHAR(255) NOT NULL UNIQUE,
-    description TEXT
+    name VARCHAR(255) NOT NULL UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS anime_categories (
@@ -54,7 +53,7 @@ WHERE table_schema = 'public'
 `;
 
 async function main() {
-  console.log("Starting to seed db..");
+  console.log("Initiating connection to DB..");
   const client = new Client({
     connectionString: process.env.DATABASE_URL,
   });
@@ -74,12 +73,11 @@ async function main() {
     } else {
       console.log("No tables found.");
     }
-    console.log("Tables: ", res.rows);
   } catch (error) {
-    console.error("Error while seeding DB: ", error.message);
+    console.error("Error while creating DB tables: ", error.message);
   } finally {
     await client.end();
-    console.log("Done with DB operations.");
+    console.log("Done with DB table creation operations.");
   }
 }
 

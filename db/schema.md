@@ -44,7 +44,6 @@
 |---------------|---------------|-----------------------|-------------------------------------|
 | `category_id` | INT           | PRIMARY KEY           | Unique ID for each category.        |
 | `name`        | VARCHAR(255)  | NOT NULL, UNIQUE      | Name of the category.               |
-| `description` | TEXT          |                       | Description of the category.        |
 
 ---
 
