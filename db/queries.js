@@ -46,9 +46,32 @@ const SQL_INSERT_DEFAULTV_STATUSES = `INSERT INTO statuses (name) VALUES ($1)`;
 const SQL_INSERT_DEFAULTV_CATEGORIES = `INSERT INTO categories (name) VALUES ($1)`;
 const SQL_INSERT_DEFAULTV_ANIME_GENRES_LIST = `INSERT INTO genre_list (name) VALUES ($1)`;
 
+const GRAPHQL_ANILIST_QUERY = `
+  query ($page: Int, $perPage: Int, $startDate: FuzzyDateInt, $type: MediaType, $minScore: Int) {
+    Page(page: $page, perPage: $perPage) {
+      media(type: $type, startDate_greater: $startDate, averageScore_greater: $minScore) {
+        title {
+          romaji
+        }
+        status
+        description
+        genres
+        averageScore
+        coverImage {
+            extraLarge
+        }
+      }
+      pageInfo {
+        hasNextPage
+      }
+    }
+  }
+`;
+
 module.exports = {
   SQL_CREATE_TABLES,
   SQL_INSERT_DEFAULTV_STATUSES,
   SQL_INSERT_DEFAULTV_CATEGORIES,
   SQL_INSERT_DEFAULTV_ANIME_GENRES_LIST,
+  GRAPHQL_ANILIST_QUERY,
 };
