@@ -195,8 +195,7 @@ sl-split-panel::part(panel) {
 
 .status,
 .genre,
-.year,
-.season {
+.year {
   min-width: 200px;
   width: 100%;
 }
@@ -205,8 +204,7 @@ sl-split-panel::part(panel) {
   max-width: 300px;
 }
 
-.status,
-.season {
+.status {
   max-width: 200px;
 }
 
