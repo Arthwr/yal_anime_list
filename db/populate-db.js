@@ -7,23 +7,10 @@ const {
   SQL_INSERT_DEFAULTV_STATUSES,
   SQL_INSERT_DEFAULTV_CATEGORIES,
   SQL_INSERT_DEFAULTV_ANIME_GENRES_LIST,
+  SQL_TRUNCATE_DEPENDENT_TABLES,
 } = require("./queries.js");
 
-async function createTables(client) {
-  // Create initial tables
-  await client.query(SQL_CREATE_TABLES);
-  console.log("Tables created successfully.");
-}
-
-async function populateTables(client, values) {
-  // Populate statuses, categories, and genres
-  await populateDefaultValues(client, SQL_INSERT_DEFAULTV_STATUSES, values.statuses);
-  await populateDefaultValues(client, SQL_INSERT_DEFAULTV_CATEGORIES, values.categories);
-  await populateDefaultValues(client, SQL_INSERT_DEFAULTV_ANIME_GENRES_LIST, values.genres);
-  console.log("Tables populated with default values successfully.");
-}
-
-async function populateDefaultValues(client, queryBaseString, values) {
+async function insertValues(client, queryBaseString, values) {
   for (let value of values) {
     try {
       await client.query(queryBaseString, [value]);
@@ -34,7 +21,25 @@ async function populateDefaultValues(client, queryBaseString, values) {
   }
 }
 
-async function fetchDataAndPopulate(client) {
+async function createAndCleanTables(client) {
+  // Create initial tables
+  await client.query(SQL_CREATE_TABLES);
+  console.log("Tables created successfully.");
+
+  // Truncate anime_categories, anime_genres, anime_titles if there is old data on new build
+  await client.query(SQL_TRUNCATE_DEPENDENT_TABLES);
+  console.log("Tables truncated successfully.");
+}
+
+async function populateTablesWithDefaults(client, values) {
+  // Populate statuses, categories, and genres
+  await insertValues(client, SQL_INSERT_DEFAULTV_STATUSES, values.statuses);
+  await insertValues(client, SQL_INSERT_DEFAULTV_CATEGORIES, values.categories);
+  await insertValues(client, SQL_INSERT_DEFAULTV_ANIME_GENRES_LIST, values.genres);
+  console.log("Tables populated with default values successfully.");
+}
+
+async function fetchAndInsertData(client) {
   console.log("Fetching and populating external data...");
 }
 
@@ -48,9 +53,9 @@ async function main() {
 
     await client.query("BEGIN");
 
-    await createTables(client);
-    await populateTables(client, values);
-    await fetchDataAndPopulate(client);
+    await createAndCleanTables(client);
+    await populateTablesWithDefaults(client, values);
+    await fetchAndInsertData(client);
 
     await client.query("COMMIT");
     console.log("Database operations committed.");
