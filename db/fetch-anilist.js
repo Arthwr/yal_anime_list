@@ -5,7 +5,7 @@ const { GRAPHQL_ANILIST_QUERY } = require("./queries.js");
 const config = {
   requestLimit: 20,
   perPage: 50,
-  startDate: 20230101,
+  startDate: 20220101,
   type: "ANIME",
   minScore: 70,
   baseUrl: "https://graphql.anilist.co",
@@ -104,7 +104,7 @@ class AnimeDataFetch {
 
   async fetchAndWriteData() {
     try {
-      // Anilist has 30 request per minute limit.
+      // Anilist has 30 request per minute limit, so we limit it to 25 with rateLimiter.
       await this.rateLimiter.waitIfNeeded();
 
       const response = await fetch(config.baseUrl, this.getRequestOptions());

@@ -58,7 +58,7 @@ const GRAPHQL_ANILIST_QUERY = `
         genres
         averageScore
         coverImage {
-            extraLarge
+          extraLarge
         }
       }
       pageInfo {
