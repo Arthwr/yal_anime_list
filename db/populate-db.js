@@ -1,5 +1,5 @@
 require("dotenv").config();
-const values = require("./default-table-values.js");
+const values = require("./data/default-table-values.js");
 const { Client } = require("pg");
 
 const {

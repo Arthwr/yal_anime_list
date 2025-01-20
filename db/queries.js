@@ -42,9 +42,9 @@ CREATE TABLE IF NOT EXISTS anime_categories (
 );
 `;
 
-const SQL_INSERT_DEFAULTV_STATUSES = `INSERT INTO statuses (name) VALUES ($1)`;
-const SQL_INSERT_DEFAULTV_CATEGORIES = `INSERT INTO categories (name) VALUES ($1)`;
-const SQL_INSERT_DEFAULTV_ANIME_GENRES_LIST = `INSERT INTO genre_list (name) VALUES ($1)`;
+const SQL_INSERT_DEFAULTV_STATUSES = `INSERT INTO statuses (name) VALUES ($1) ON CONFLICT (name) DO NOTHING;`;
+const SQL_INSERT_DEFAULTV_CATEGORIES = `INSERT INTO categories (name) VALUES ($1) ON CONFLICT (name) DO NOTHING;`;
+const SQL_INSERT_DEFAULTV_ANIME_GENRES_LIST = `INSERT INTO genre_list (name) VALUES ($1) ON CONFLICT (name) DO NOTHING;`;
 
 const GRAPHQL_ANILIST_QUERY = `
   query ($page: Int, $perPage: Int, $startDate: FuzzyDateInt, $type: MediaType, $minScore: Int) {
