@@ -60,31 +60,35 @@ class AnimeDataFetch {
     }
   }
 
-  async initializeEmptyFile() {
+  async initializeDataFile() {
     try {
+      await this.ensureDirectoryExists();
+      try {
+        // Deleting old data on new build if it exists
+        await fs.promises.unlink(config.dataPath);
+        console.log(`Deleted existing ${config.dataPath}`);
+      } catch (error) {
+        if (error.code !== "ENOENT") {
+          console.error(`Failed to delete ${config.dataPath}:`, error.message);
+          throw error;
+        }
+      }
+
+      // Create new empty file
       await fs.promises.writeFile(config.dataPath, "[]", "utf-8");
-      return [];
+      console.log("Initialized new data file.");
     } catch (error) {
-      console.error("Failed to initialize empty file:", error);
+      console.error("Error during file initialization:", error.message);
       throw error;
     }
   }
 
   async readCurrentData() {
     try {
-      await this.ensureDirectoryExists();
-
-      try {
-        const currentData = await fs.promises.readFile(config.dataPath, "utf-8");
-        return JSON.parse(currentData);
-      } catch (error) {
-        if (error.code === "ENOENT") {
-          return this.initializeEmptyFile();
-        }
-        throw error;
-      }
+      const currentData = await fs.promises.readFile(config.dataPath, "utf-8");
+      return JSON.parse(currentData);
     } catch (error) {
-      console.error("Error handling data file: ", error.message);
+      console.error("Error reading data file:", error.message);
       throw error;
     }
   }
@@ -99,6 +103,7 @@ class AnimeDataFetch {
       console.log(`Successfuly wrote ${newData.length} items to ${config.dataPath}`);
     } catch (error) {
       console.log("Error writting to file: ", error);
+      throw error;
     }
   }
 
@@ -136,8 +141,16 @@ class AnimeDataFetch {
   }
 }
 
-const fetcher = new AnimeDataFetch();
-fetcher.fetchAndWriteData().catch((error) => {
-  console.error("Fatal error: ", error.message);
-  process.exitCode = 1;
-});
+(async () => {
+  const fetcher = new AnimeDataFetch();
+
+  try {
+    await fetcher.initializeDataFile();
+    await fetcher.fetchAndWriteData();
+
+    console.log("Data fetching process completed successfully.");
+  } catch (error) {
+    console.error("Fatal error during execution:", error.message);
+    process.exitCode = 1;
+  }
+})();
