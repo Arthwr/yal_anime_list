@@ -1,14 +1,9 @@
 require("dotenv").config();
-const values = require("./data/default-table-values.js");
 const { Client } = require("pg");
+const values = require("./data/default-table-values.js");
+const fetchAnilist = require("./fetch-anilist.js");
 
-const {
-  SQL_CREATE_TABLES,
-  SQL_INSERT_DEFAULTV_STATUSES,
-  SQL_INSERT_DEFAULTV_CATEGORIES,
-  SQL_INSERT_DEFAULTV_ANIME_GENRES_LIST,
-  SQL_TRUNCATE_DEPENDENT_TABLES,
-} = require("./queries.js");
+const queries = require("./queries.js");
 
 async function insertValues(client, queryBaseString, values) {
   for (let value of values) {
@@ -23,24 +18,24 @@ async function insertValues(client, queryBaseString, values) {
 
 async function createAndCleanTables(client) {
   // Create initial tables
-  await client.query(SQL_CREATE_TABLES);
+  await client.query(queries.SQL_CREATE_TABLES);
   console.log("Tables created successfully.");
 
   // Truncate anime_categories, anime_genres, anime_titles if there is old data on new build
-  await client.query(SQL_TRUNCATE_DEPENDENT_TABLES);
+  await client.query(queries.SQL_TRUNCATE_DEPENDENT_TABLES);
   console.log("Tables truncated successfully.");
 }
 
 async function populateTablesWithDefaults(client, values) {
   // Populate statuses, categories, and genres
-  await insertValues(client, SQL_INSERT_DEFAULTV_STATUSES, values.statuses);
-  await insertValues(client, SQL_INSERT_DEFAULTV_CATEGORIES, values.categories);
-  await insertValues(client, SQL_INSERT_DEFAULTV_ANIME_GENRES_LIST, values.genres);
+  await insertValues(client, queries.SQL_INSERT_DEFAULTV_STATUSES, values.statuses);
+  await insertValues(client, queries.SQL_INSERT_DEFAULTV_CATEGORIES, values.categories);
+  await insertValues(client, queries.SQL_INSERT_DEFAULTV_ANIME_GENRES_LIST, values.genres);
   console.log("Tables populated with default values successfully.");
 }
 
 async function fetchAndInsertData(client) {
-  console.log("Fetching and populating external data...");
+  await fetchAnilist();
 }
 
 async function main() {

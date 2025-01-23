@@ -1,17 +1,7 @@
 const fs = require("node:fs");
 const RateLimiter = require("./utils/RateLimiter.js");
-const { GRAPHQL_ANILIST_QUERY } = require("./queries.js");
-
-const config = {
-  requestLimit: 20,
-  perPage: 50,
-  startDate: 20220101,
-  type: "ANIME",
-  minScore: 70,
-  baseUrl: "https://graphql.anilist.co",
-  dataDirPath: "./db/data",
-  dataPath: "./db/data/anime-data.json",
-};
+const config = require("./config.js");
+const queries = require("./queries.js");
 
 class AnimeDataFetch {
   constructor() {
@@ -27,7 +17,7 @@ class AnimeDataFetch {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        query: GRAPHQL_ANILIST_QUERY,
+        query: queries.GRAPHQL_ANILIST_QUERY,
         variables: {
           page: this.pageNumber,
           perPage: config.perPage,
@@ -141,7 +131,7 @@ class AnimeDataFetch {
   }
 }
 
-(async () => {
+async function fetchAnilist() {
   const fetcher = new AnimeDataFetch();
 
   try {
@@ -153,4 +143,6 @@ class AnimeDataFetch {
     console.error("Fatal error during execution:", error.message);
     process.exitCode = 1;
   }
-})();
+}
+
+module.exports = fetchAnilist;
