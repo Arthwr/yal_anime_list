@@ -4,6 +4,7 @@ const values = require("./data/default-table-values.js");
 const fetchAnilist = require("./fetch-anilist.js");
 
 const queries = require("./queries.js");
+const populateDb = require("./seed-db.js");
 
 async function insertValues(client, queryBaseString, values) {
   for (let value of values) {
@@ -34,11 +35,7 @@ async function populateTablesWithDefaults(client, values) {
   console.log("Tables populated with default values successfully.");
 }
 
-async function fetchAndInsertData(client) {
-  await fetchAnilist();
-}
-
-async function main() {
+async function initiateTables() {
   console.log("Initiating connection to DB...");
   const client = new Client({ connectionString: process.env.DATABASE_URL });
 
@@ -50,7 +47,6 @@ async function main() {
 
     await createAndCleanTables(client);
     await populateTablesWithDefaults(client, values);
-    await fetchAndInsertData(client);
 
     await client.query("COMMIT");
     console.log("Database operations committed.");
@@ -61,6 +57,12 @@ async function main() {
     await client.end();
     console.log("Database connection closed.");
   }
+}
+
+async function main() {
+  await initiateTables();
+  await fetchAnilist();
+  await populateDb();
 }
 
 main();

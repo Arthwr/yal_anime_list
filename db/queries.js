@@ -68,7 +68,14 @@ CREATE TABLE IF NOT EXISTS anime_categories (
 );
 `;
 
-const SQL_TRUNCATE_DEPENDENT_TABLES = `TRUNCATE TABLE anime_titles CASCADE;`;
+const SQL_TRUNCATE_DEPENDENT_TABLES = `
+TRUNCATE TABLE anime_titles CASCADE;
+TRUNCATE anime_genres CASCADE;
+TRUNCATE anime_titles CASCADE;
+TRUNCATE categories CASCADE;
+TRUNCATE genre_list CASCADE;
+TRUNCATE statuses CASCADE;`;
+
 const SQL_INSERT_DEFAULTV_STATUSES = `INSERT INTO statuses (name) VALUES ($1) ON CONFLICT (name) DO NOTHING;`;
 const SQL_INSERT_DEFAULTV_CATEGORIES = `INSERT INTO categories (name) VALUES ($1) ON CONFLICT (name) DO NOTHING;`;
 const SQL_INSERT_DEFAULTV_ANIME_GENRES_LIST = `INSERT INTO genre_list (name) VALUES ($1) ON CONFLICT (name) DO NOTHING;`;
@@ -84,8 +91,7 @@ SELECT
     unnest($4::text[]) as image_url,
     unnest($5::int[]) as average_score
 FROM statuses s
-WHERE s.name = ANY($6::text[])
-ON CONFLICT (title) DO NOTHING;
+WHERE s.name = ANY($6::text[]);
 `;
 
 const SQL_BATCH_INSERT_GENRES = `
