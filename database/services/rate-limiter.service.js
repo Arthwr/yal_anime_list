@@ -1,16 +1,17 @@
-class RateLimiter {
-  constructor(limit, interval = 60000) {
+class RateLimiterService {
+  constructor(limit = 25, interval = 60000) {
     this.limit = limit;
     this.interval = interval;
-    this.requests = [];
+    this.requestTimestamps = [];
   }
 
   async waitIfNeeded() {
     const now = Date.now();
-    this.requests = this.requests.filter((time) => now - time <= this.interval);
 
-    if (this.requests.length >= this.limit) {
-      const oldestRequest = this.requests[0];
+    this.requestTimestamps = this.requestTimestamps.filter((time) => now - time <= this.interval);
+
+    if (this.requestTimestamps.length >= this.limit) {
+      const oldestRequest = this.requestTimestamps[0];
       const timeToWait = Math.max(0, this.interval - (now - oldestRequest));
 
       if (timeToWait > 0) {
@@ -21,8 +22,8 @@ class RateLimiter {
       return this.waitIfNeeded();
     }
 
-    this.requests.push(now);
+    this.requestTimestamps.push(now);
   }
 }
 
-module.exports = RateLimiter;
+module.exports = RateLimiterService;
