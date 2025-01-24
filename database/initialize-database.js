@@ -16,6 +16,9 @@ async function initializeDatabase() {
     // Create tables
     await AnilistDataSeeder.createTables(client);
 
+    // Clean old data
+    await AnilistDataSeeder.truncateTables(client);
+
     // Seed default values
     await AnilistDataSeeder.seedDefaultValues(client);
 

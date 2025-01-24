@@ -41,7 +41,7 @@ class AnilistFetcherService {
 
     try {
       await fs.writeFile(config.PATHS.CACHE_FILE, "[]", "utf-8");
-      console.log("Initialzed new data cache file.");
+      console.log("Initialized new data cache file.");
     } catch (error) {
       console.error("Data file initialization failed:", error);
       throw error;

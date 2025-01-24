@@ -97,7 +97,9 @@ class DataSeeder {
       console.log("Inserting category relationships...");
       await client.query(insertQueries.BATCH_INSERT_CATEGORIES);
 
-      console.log(`Seeded ${titles.length} anime entries.`);
+      console.log(`Seeded ${titles.length} anime entries from source file.`);
+      const { rows } = await client.query("SELECT COUNT(title_id) FROM anime_titles;");
+      console.log("Actually inserted titles to the table:", rows[0].count);
     } catch (error) {
       console.error("Anilist data seeding failed: ", error);
       throw error;

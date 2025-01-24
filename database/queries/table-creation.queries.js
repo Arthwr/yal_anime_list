@@ -8,10 +8,10 @@ CREATE TABLE IF NOT EXISTS statuses (
 -- Anime Titles Table
 CREATE TABLE IF NOT EXISTS anime_titles (
     title_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    title VARCHAR(255) NOT NULL,
+    title VARCHAR(255) NOT NULL UNIQUE,
     description TEXT,
     release_date INT,
-    status_id INT NOT NULL,
+    status_id INT,
     image_url VARCHAR(2048) NOT NULL,
     average_score INT,
     CONSTRAINT fk_status_id FOREIGN KEY (status_id)

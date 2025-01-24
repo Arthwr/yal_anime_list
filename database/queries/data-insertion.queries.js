@@ -32,7 +32,8 @@ module.exports = {
       unnest($4::text[]) as image_url,
       unnest($5::int[]) as average_score
     FROM statuses s
-    WHERE s.name = ANY($6::text[]);
+    WHERE s.name = ANY($6::text[])
+    ON CONFLICT (title) DO NOTHING;
   `,
 
   // Batch insert anime genres
