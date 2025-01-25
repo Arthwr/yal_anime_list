@@ -25,6 +25,8 @@ class AnilistFetcherService {
           startDate: config.API_OPTIONS.FILTERS.START_DATE,
           type: config.API_OPTIONS.FILTERS.MEDIA_TYPE,
           minScore: config.API_OPTIONS.FILTERS.MIN_SCORE,
+          format: config.API_OPTIONS.FILTERS.MEDIA_FORMAT,
+          sort: config.API_OPTIONS.FILTERS.SORT,
         },
       }),
     };

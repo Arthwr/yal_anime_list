@@ -1,15 +1,17 @@
 <sl-card class="card-overview">
-  <div slot="header">Frieren: Beyond Journey's End</div>
+  <div slot="header">
+    <%= item.title %>
+  </div>
   <img
     slot="image"
-    src="assets/frieren-post.avif"
-    alt="Frieren: Beyond Journey's End poster"
+    src=<%= item.image_url %>
+    alt=<%= item.title %>
     width="250"
     height="350"
   />
-  The elven mage Frieren is a former member of a party of adventurers who defeated the Demon King and restored harmony
-  to the world after a ten-year quest. The party also consists of the human hero Himmel, the dwarven warrior Eisen, and
-  the human priest Heiter.
+  <div class="description-container">
+    <div><%- item.description %></div>
+  </div>
   <div class="card-footer" slot="footer">
     <sl-rating label="Rating" readonly value="5"></sl-rating>
     <div class="tag-group">

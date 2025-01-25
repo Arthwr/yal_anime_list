@@ -6,7 +6,9 @@ module.exports = {
     FILTERS: {
       START_DATE: 20220101,
       MEDIA_TYPE: "ANIME",
+      MEDIA_FORMAT: ["TV", "MOVIE"],
       MIN_SCORE: 70,
+      SORT: ["POPULARITY_DESC", "SCORE_DESC"],
     },
   },
   PATHS: {

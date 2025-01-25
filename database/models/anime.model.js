@@ -1,7 +1,16 @@
+const createDOMpurify = require("dompurify");
+const { JSDOM } = require("jsdom");
+
+const window = new JSDOM("").window;
+const DOMpurify = createDOMpurify(window);
+
 class AnimeModel {
   constructor(data) {
     this.title = data.title?.romaji || "Unknown Title";
-    this.description = data.description || "No description available";
+    this.description = DOMpurify.sanitize(data.description || "No description available", {
+      ALLOWED_TAGS: ["b", "br", "em", "strong", "a"],
+      ALLOWED_ATTR: ["href"],
+    });
     this.releaseYear = data.startDate?.year;
     this.status = data.status;
     this.imageUrl = data.coverImage?.extraLarge;

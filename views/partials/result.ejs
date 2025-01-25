@@ -1,15 +1,5 @@
 <section class="grid-wrapper">
-    <%- include("card") %>
-    <%- include("card") %>
-    <%- include("card") %>
-    <%- include("card") %>
-    <%- include("card") %>
-    <%- include("card") %>
-    <%- include("card") %>
-    <%- include("card") %>
-    <%- include("card") %>
-    <%- include("card") %>
-    <%- include("card") %>
-    <%- include("card") %>
-    <%- include("card") %>
+    <% titles.forEach(item => { %>
+     <%- include("card", { item })  %>
+    <% }) %>
 </section>
