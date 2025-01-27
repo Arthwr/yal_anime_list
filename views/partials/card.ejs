@@ -14,9 +14,11 @@
   </div>
   <div class="card-footer" slot="footer">
     <sl-rating label="community rating" readonly value="<%= utils.convertUserScore(item.average_score) %>"></sl-rating>
-    <div class="tag-group">
+    <div>Year: <%= item.release_date %></div>
+    <sl-tag variant="<%= utils.getStatusColor(item.status_name)%>"> <%= utils.convertStatusName(item.status_name) %></sl-tag>
+    <div class="genre-group">
       <% item.genres.forEach(genre => { %>
-       <sl-tag variant="primary"><%= genre %></sl-tag>
+       <sl-tag variant="neutral" size="small"><%= genre %></sl-tag>
       <% }) %>
     </div>
   </div>

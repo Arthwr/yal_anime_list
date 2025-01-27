@@ -25,14 +25,22 @@ module.exports = {
     INSERT INTO anime_titles
       (title, description, release_date, status_id, image_url, average_score)
     SELECT
-      unnest($1::text[]) as title,
-      unnest($2::text[]) as description,
-      unnest($3::int[]) as release_date,
+      data.title,
+      data.description,
+      data.release_date,
       s.status_id,
-      unnest($4::text[]) as image_url,
-      unnest($5::int[]) as average_score
-    FROM statuses s
-    WHERE s.name = ANY($6::text[])
+      data.image_url,
+      data.average_score
+    FROM (
+      SELECT
+        unnest($1::text[]) as title,
+        unnest($2::text[]) as description,
+        unnest($3::int[]) as release_date,
+        unnest($4::text[]) as image_url,
+        unnest($5::int[]) as average_score,
+        unnest($6::text[]) as status_name
+    ) AS data
+    JOIN statuses s ON s.name = data.status_name
     ON CONFLICT (title) DO NOTHING;
   `,
 

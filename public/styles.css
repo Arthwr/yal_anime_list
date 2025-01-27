@@ -283,6 +283,7 @@ sl-card {
 }
 
 sl-card::part(base) {
+  max-height: 1000px;
   height: 100%;
 }
 
@@ -323,12 +324,12 @@ sl-card::part(body)::-webkit-scrollbar-track {
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   align-items: center;
   justify-content: center;
 }
 
-.tag-group {
+.genre-group {
   display: flex;
   justify-self: end;
   justify-content: center;
