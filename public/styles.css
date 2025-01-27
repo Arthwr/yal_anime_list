@@ -337,7 +337,22 @@ sl-card::part(body)::-webkit-scrollbar-track {
   gap: var(--sl-spacing-x-small);
 }
 
-/* Random */
 .button::part(base) {
   color: var(--sl-color-sky-950);
+}
+
+/* Rating hover */
+.detect-hover span {
+  position: relative;
+  top: -4px;
+  left: 8px;
+  border-radius: var(--sl-border-radius-small);
+  background: var(--sl-color-neutral-900);
+  color: var(--sl-color-neutral-0);
+  text-align: center;
+  padding: 4px 6px;
+}
+
+.detect-hover span:empty {
+  display: none;
 }

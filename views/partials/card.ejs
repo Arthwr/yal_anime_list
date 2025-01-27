@@ -4,8 +4,8 @@
   </div>
   <img
     slot="image"
-    src=<%= item.image_url %>
-    alt=<%= item.title %>
+    src="<%= item.image_url %>"
+    alt="<%= item.title %>"
     width="250"
     height="350"
   />
@@ -13,7 +13,10 @@
     <div><%- item.description %></div>
   </div>
   <div class="card-footer" slot="footer">
-    <sl-rating label="community rating" readonly value="<%= utils.convertUserScore(item.average_score) %>"></sl-rating>
+    <div class="detect-hover">
+      <sl-rating label="community rating" readonly value="<%= utils.convertUserScore(item.average_score) %>"></sl-rating>
+      <span data-score="<%= item.average_score %>"></span>
+    </div>
     <div>Year: <%= item.release_date %></div>
     <sl-tag variant="<%= utils.getStatusColor(item.status_name)%>"> <%= utils.convertStatusName(item.status_name) %></sl-tag>
     <div class="genre-group">
