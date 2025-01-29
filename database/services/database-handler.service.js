@@ -30,6 +30,15 @@ class DatabaseService {
       throw new Error("Failed to fetch titles by category");
     }
   }
+
+  static async getMoreTitles(categoryName, offset) {
+    try {
+      return await this.query(queries.GET_TITLES, [categoryName, offset]);
+    } catch (error) {
+      console.error("Error fetching paginated titles:", error);
+      throw new Error("Failed to fetch paginated titles");
+    }
+  }
   // Perform search query with specified params
   // REST actions queries : delete, add, update
 }

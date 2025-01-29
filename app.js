@@ -3,6 +3,7 @@ const path = require("node:path");
 const express = require("express");
 const utils = require("./utils/helpers");
 const indexRouter = require("./routes/indexRouter");
+const titlesRouter = require("./routes/titlesRouter");
 
 if ((process.env.NODE_ENV = "production")) {
   dotenv.config({ path: "./.env.production" });
@@ -25,6 +26,7 @@ app.locals.utils = utils;
 
 // Routes
 app.use("/", indexRouter);
+app.use("/titles", titlesRouter);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -40,3 +42,7 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+// To do:
+// 1. implement custom Error class for hanlding errors
+// 2. implement async wrapper for handling errors

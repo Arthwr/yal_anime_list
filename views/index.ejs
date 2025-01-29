@@ -11,6 +11,7 @@
       src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.19.1/cdn/shoelace-autoloader.js"
     ></script>
     <script src="js/scripts.js" defer></script>
+    <script src="js/observer.js" defer></script>
     <title>YAL</title>
   </head>
   <body>
@@ -31,7 +32,12 @@
           </div>
           <div slot="end" class="right">
             <%- include ("partials/form") %>
-            <%- include("partials/result", { titles: titles }) %>
+            <section class="titles">
+              <div id="titles-container" class="grid-wrapper">
+                <%- include("partials/titles", { titles: titles }) %>
+              </div>
+              <div id="sentry" data-page="1"></div>
+            </section>
           </div>
         </sl-split-panel>
       </div>
