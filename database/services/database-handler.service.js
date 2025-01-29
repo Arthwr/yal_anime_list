@@ -13,11 +13,18 @@ class DatabaseService {
     }
   }
 
+  static async checkCategoryName(categoryName) {
+    try {
+      return await this.query(queries.GET_CATEGORY, [categoryName]);
+    } catch (error) {
+      console.error("Error checking category name", error);
+      throw new Error("Failed to fetch category name");
+    }
+  }
+
   static async getTitlesByCategory(categoryName) {
     try {
-      const query = queries.GET_TITLES_BY_CATEGORY;
-      const result = await this.query(query, [categoryName]);
-      return result;
+      return await this.query(queries.GET_TITLES_BY_CATEGORY, [categoryName]);
     } catch (error) {
       console.error("Error fetching titles by category:", error);
       throw new Error("Failed to fetch titles by category");

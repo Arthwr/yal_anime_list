@@ -1,4 +1,7 @@
 module.exports = {
+  GET_CATEGORY: `
+  SELECT category_id FROM categories WHERE name ILIKE $1;
+  `,
   GET_TITLES_BY_CATEGORY: `
   SELECT
     anime_titles.title,
@@ -19,7 +22,7 @@ module.exports = {
         ON anime_titles.title_id = anime_genres.anime_id
     LEFT JOIN genre_list
         ON anime_genres.genre_id = genre_list.genre_id
-    WHERE categories.name = $1
+    WHERE categories.name ILIKE $1
     GROUP BY anime_titles.title_id, statuses.name
     LIMIT 50;
       `,

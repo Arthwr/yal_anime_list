@@ -85,6 +85,10 @@ sl-split-panel::part(panel) {
   height: 100%;
 }
 
+.left {
+  height: 100vh;
+}
+
 .split-panel-divider sl-split-panel {
   --divider-width: 2px;
 }
@@ -95,6 +99,8 @@ sl-split-panel::part(panel) {
 
 .split-panel-divider sl-icon {
   position: absolute;
+  top: 50%;
+  transform: translateX(-50%);
   border-radius: var(--sl-border-radius-small);
   background: var(--sl-color-primary-600);
   color: var(--sl-color-neutral-0);
