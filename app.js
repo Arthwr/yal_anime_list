@@ -4,6 +4,7 @@ const express = require("express");
 const utils = require("./utils/helpers");
 const indexRouter = require("./routes/indexRouter");
 const titlesRouter = require("./routes/titlesRouter");
+const errorHandler = require("./middleware/errorHandler");
 
 if ((process.env.NODE_ENV = "production")) {
   dotenv.config({ path: "./.env.production" });
@@ -29,20 +30,6 @@ app.use("/", indexRouter);
 app.use("/titles", titlesRouter);
 
 // Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(`[${new Date().toISOString()}] ${err.stack}`);
-
-  if (process.env.NODE_ENV === "development") {
-    res
-      .status(500)
-      .json({ message: err.message || "Internal Server Error", path: req.path, indexRouter, stack: err.stack });
-  } else {
-    res.status(500).send("Internal Server Error");
-  }
-});
+app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-// To do:
-// 1. implement custom Error class for hanlding errors
-// 2. implement async wrapper for handling errors

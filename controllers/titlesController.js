@@ -1,6 +1,7 @@
+const asyncHandler = require("../utils/asyncHandler");
 const DatabaseService = require("../database/services/database-handler.service");
 
-exports.getTitles = async (req, res) => {
+const getTitles = asyncHandler(async (req, res) => {
   const pageNumber = Number(req.params.page);
   const category = req.params.category;
   const categoryName = decodeURIComponent(category).replace(/-/g, " ");
@@ -30,4 +31,6 @@ exports.getTitles = async (req, res) => {
     console.error("Error fetching paginated titles:", error);
     res.status(500).json({ error: "Internal server error" });
   }
-};
+});
+
+module.exports = { getTitles };

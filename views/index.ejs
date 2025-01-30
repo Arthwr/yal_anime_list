@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.19.1/cdn/themes/light.css" />
     <link rel="stylesheet" href="/styles.css" />
-    <script
-      type="module"
-      src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.19.1/cdn/shoelace-autoloader.js"
-    ></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.19.1/cdn/shoelace-autoloader.js"></script>
     <script src="js/scripts.js" defer></script>
-    <script src="js/observer.js" defer></script>
     <title>YAL</title>
   </head>
   <body>
@@ -31,25 +28,27 @@
             <%- include("partials/categories") %>
           </div>
           <div slot="end" class="right">
-            <%- include ("partials/form") %>
+            <%- include("partials/form") %>
             <section class="titles">
               <div id="titles-container" class="grid-wrapper">
                 <% if (titles && titles.length > 0) { %>
                   <%- include("partials/titles", { titles: titles }) %>
                 <% } else { %>
-                <div class="no-data">
-                  <p>No titles available for this category</p>
-                  <img src="/assets/spike.gif" alt="">
-                </div>
+                  <div class="no-data">
+                    <p>No titles available for this category</p>
+                    <img src="/assets/spike.gif" alt="" />
+                  </div>
                 <% } %>
-              </div>
-                <% if (titles && titles.length === 0) { %>
+
+                <% if (titles && titles.length > 0) { %>
                   <div id="sentry" data-page="1"></div>
                 <% } %>
+              </div>
             </section>
           </div>
         </sl-split-panel>
       </div>
     </main>
   </body>
+
 </html>

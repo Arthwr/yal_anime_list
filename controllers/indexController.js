@@ -1,11 +1,12 @@
+const asyncHandler = require("../utils/asyncHandler");
 const DataBaseService = require("../database/services/database-handler.service");
 
-exports.indexGetMain = async (req, res) => {
+const indexGetMain = asyncHandler(async (req, res) => {
   const titles = await DataBaseService.getTitlesByCategory("Everything");
   res.render("index", { titles });
-};
+});
 
-exports.indexGetCategory = async (req, res) => {
+const indexGetCategory = asyncHandler(async (req, res) => {
   const category = decodeURIComponent(req.params.category).replace(/-/g, " ");
   const categoriesResult = await DataBaseService.checkCategoryName(category);
 
@@ -15,4 +16,6 @@ exports.indexGetCategory = async (req, res) => {
 
   const categoryTitles = await DataBaseService.getTitlesByCategory(category);
   res.render("index", { titles: categoryTitles });
-};
+});
+
+module.exports = { indexGetMain, indexGetCategory };
