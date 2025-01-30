@@ -21,11 +21,16 @@ function setupScoreHover() {
 
 function handleScoreDisplay(event, action) {
   const detectHoverElement = event.target.closest(".detect-hover");
+
   if (!detectHoverElement) return;
 
   const span = detectHoverElement.querySelector("span");
   if (span) {
-    span.textContent = action === "show" && span.dataset.score ? detectHoverElement.dataset.score : "";
+    if (action === "show" && span.dataset.score) {
+      span.textContent = span.dataset.score;
+    } else if (action === "hide") {
+      span.textContent = "";
+    }
   }
 }
 
