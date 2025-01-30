@@ -34,9 +34,18 @@
             <%- include ("partials/form") %>
             <section class="titles">
               <div id="titles-container" class="grid-wrapper">
-                <%- include("partials/titles", { titles: titles }) %>
+                <% if (titles && titles.length > 0) { %>
+                  <%- include("partials/titles", { titles: titles }) %>
+                <% } else { %>
+                <div class="no-data">
+                  <p>No titles available for this category</p>
+                  <img src="/assets/spike.gif" alt="">
+                </div>
+                <% } %>
               </div>
-              <div id="sentry" data-page="1"></div>
+                <% if (titles && titles.length === 0) { %>
+                  <div id="sentry" data-page="1"></div>
+                <% } %>
             </section>
           </div>
         </sl-split-panel>

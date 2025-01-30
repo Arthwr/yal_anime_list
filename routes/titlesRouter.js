@@ -3,6 +3,6 @@ const titlesController = require("../controllers/titlesController");
 
 const apiRouter = Router();
 
-apiRouter.get("/:page", titlesController.getTitles);
+apiRouter.get("/:category/:page", titlesController.getTitles);
 
 module.exports = apiRouter;

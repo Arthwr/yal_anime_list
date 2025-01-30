@@ -2,7 +2,7 @@ const DatabaseService = require("../database/services/database-handler.service")
 
 exports.getTitles = async (req, res) => {
   const pageNumber = Number(req.params.page);
-  const category = req.params.category ? req.params.category : "Everything";
+  const category = req.params.category;
   const categoryName = decodeURIComponent(category).replace(/-/g, " ");
 
   if (isNaN(pageNumber) || pageNumber <= 0) {

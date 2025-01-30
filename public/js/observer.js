@@ -9,7 +9,11 @@ async function fetchAndLoadMoreTitles(observer, sentry) {
 
   try {
     page = Number(sentry.dataset.page);
-    const response = await fetch(`/titles/${page}`);
+
+    const currentPath = window.location.pathname;
+
+    const category = currentPath === "/" ? "everything" : currentPath.substring(1);
+    const response = await fetch(`/titles/${category}/${page}`);
     const result = await response.json();
 
     if (!response.ok) {
