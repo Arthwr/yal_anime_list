@@ -1,5 +1,11 @@
 <section class="form-container">
   <form action="/search" method="get" id="search-form">
+    <div class="search-container">
+      <search>
+        <sl-input label="Search" name="query" clearable></sl-input>
+      </search>
+      <sl-button type="submit" variant="primary" form="search-form">Search</sl-button>
+    </div>
     <div class="input-container">
       <div class="genre">
         <sl-select label="Genre" value="" multiple clearable max-options-visible="2">
@@ -22,12 +28,6 @@
           <% }) %>
         </sl-select>
       </div>
-    </div>
-    <div class="search-container">
-      <search>
-        <sl-input label="Search" name="query" clearable></sl-input>
-      </search>
-      <sl-button type="submit" variant="primary" form="search-form">Search</sl-button>
     </div>
   </form>
 </section>
