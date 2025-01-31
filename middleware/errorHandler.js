@@ -1,11 +1,16 @@
 const errorHandler = (err, req, res, next) => {
-  console.error(`[${new Date().toISOString()}] ${err.stack}`);
+  const statusCode = err.status || 500;
+  const response = {
+    message: err.message || "Internal Server Error",
+    path: req.path,
+  };
 
   if (process.env.NODE_ENV === "development") {
-    res.status(500).json({ message: err.message || "Internal Server Error", path: req.path, stack: err.stack });
-  } else {
-    res.status(500).send("Internal Server Error");
+    response.stack = err.stack;
+    console.error(`[${new Date().toISOString()}] ${err.stack}`);
   }
+
+  res.status(statusCode).send(response);
 };
 
 module.exports = errorHandler;

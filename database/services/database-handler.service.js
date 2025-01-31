@@ -13,34 +13,22 @@ class DatabaseService {
     }
   }
 
+  static async getMetaData() {
+    const result = await this.query(queries.GET_METADATA);
+    return result[0] || {};
+  }
+
   static async checkCategoryName(categoryName) {
-    try {
-      return await this.query(queries.GET_CATEGORY, [categoryName]);
-    } catch (error) {
-      console.error("Error checking category name", error);
-      throw new Error("Failed to fetch category name");
-    }
+    return await this.query(queries.GET_CATEGORY, [categoryName]);
   }
 
   static async getTitlesByCategory(categoryName) {
-    try {
-      return await this.query(queries.GET_TITLES_BY_CATEGORY, [categoryName]);
-    } catch (error) {
-      console.error("Error fetching titles by category:", error);
-      throw new Error("Failed to fetch titles by category");
-    }
+    return await this.query(queries.GET_TITLES_BY_CATEGORY, [categoryName]);
   }
 
   static async getMoreTitles(categoryName, offset) {
-    try {
-      return await this.query(queries.GET_TITLES, [categoryName, offset]);
-    } catch (error) {
-      console.error("Error fetching paginated titles:", error);
-      throw new Error("Failed to fetch paginated titles");
-    }
+    return await this.query(queries.GET_TITLES, [categoryName, offset]);
   }
-  // Perform search query with specified params
-  // REST actions queries : delete, add, update
 }
 
 module.exports = DatabaseService;

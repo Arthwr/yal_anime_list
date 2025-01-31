@@ -25,21 +25,20 @@
         <sl-split-panel class="split-group" position-in-pixels="350" snap="350px">
           <sl-icon slot="divider" name="grip-vertical"></sl-icon>
           <div slot="start" class="left">
-            <%- include("partials/categories") %>
+            <%- include("partials/categories", { categories }) %>
           </div>
           <div slot="end" class="right">
-            <%- include("partials/form") %>
+            <%- include("partials/form", { genres, years, statuses }) %>
             <section class="titles">
               <div id="titles-container" class="grid-wrapper">
                 <% if (titles && titles.length > 0) { %>
-                  <%- include("partials/titles", { titles: titles }) %>
+                  <%- include("partials/titles", { titles }) %>
                 <% } else { %>
                   <div class="no-data">
                     <p>No titles available for this category</p>
                     <img src="/assets/spike.gif" alt="" />
                   </div>
                 <% } %>
-
                 <% if (titles && titles.length > 0) { %>
                   <div id="sentry" data-page="1"></div>
                 <% } %>

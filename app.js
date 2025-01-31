@@ -6,7 +6,7 @@ const indexRouter = require("./routes/indexRouter");
 const titlesRouter = require("./routes/titlesRouter");
 const errorHandler = require("./middleware/errorHandler");
 
-if ((process.env.NODE_ENV = "production")) {
+if (process.env.NODE_ENV === "production") {
   dotenv.config({ path: "./.env.production" });
 } else {
   dotenv.config({ path: "./.env" });
@@ -29,7 +29,11 @@ app.locals.utils = utils;
 app.use("/", indexRouter);
 app.use("/titles", titlesRouter);
 
-// Error handling middleware
+// Error handling
+app.use((req, res, next) => {
+  next({ status: 404, message: "Route not found" });
+});
 app.use(errorHandler);
 
+// Server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

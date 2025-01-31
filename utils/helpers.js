@@ -14,13 +14,23 @@ module.exports = {
 
     return Math.round((score / 100) * maxScore * 10) / 10;
   },
+
   convertStatusName: (string) => {
     if (typeof string !== "string" || !string) {
       return string;
     }
 
-    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+    return string
+      .replace(/_/g, " ")
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
   },
+
+  convertGenresToHtmlValues: (string) => {
+    return string.replace(/ /g, "_");
+  },
+
   getStatusColor: (status) => {
     return statusTagColors[status] || "neutral";
   },

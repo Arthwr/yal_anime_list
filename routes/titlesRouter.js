@@ -1,8 +1,8 @@
 const { Router } = require("express");
 const titlesController = require("../controllers/titlesController");
 
-const apiRouter = Router();
+const titlesRouter = Router();
 
-apiRouter.get("/:category/:page", titlesController.getTitles);
+titlesRouter.get("/:category/:page", titlesController.getTitles);
 
-module.exports = apiRouter;
+module.exports = titlesRouter;

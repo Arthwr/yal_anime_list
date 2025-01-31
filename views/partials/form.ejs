@@ -3,29 +3,23 @@
     <div class="input-container">
       <div class="genre">
         <sl-select label="Genre" value="" multiple clearable max-options-visible="2">
-          <sl-option value="isekai">Isekai</sl-option>
-          <sl-option value="school-romance">School Romance</sl-option>
-          <sl-option value="comedy">Comedy</sl-option>
-          <sl-option value="fantasy">Fantasy</sl-option>
-          <sl-option value="adventure">Adventure</sl-option>
-          <sl-option value="detective">Detective</sl-option>
+          <% genres.forEach(item => { %>
+          <sl-option value="<%= utils.convertGenresToHtmlValues(item) %>"><%= item %></sl-option>
+          <% }) %>
         </sl-select>
       </div>
       <div class="year">
         <sl-select label="Year" multiple clearable max-options-visible="2">
-          <sl-option value="2025">2025</sl-option>
-          <sl-option value="2024">2024</sl-option>
-          <sl-option value="2023">2023</sl-option>
-          <sl-option value="2022">2022</sl-option>
-          <sl-option value="2021">2021</sl-option>
-          <sl-option value="2020">2020</sl-option>
+          <% years.forEach(item => { %>
+          <sl-option value="<%= item %>"><%= item %></sl-option>
+          <% }) %>
         </sl-select>
       </div>
       <div class="status">
-        <sl-select label="Status">
-          <sl-option value="ongoing">Ongoing</sl-option>
-          <sl-option value="finished">Finished</sl-option>
-          <sl-option value="not-aired">Upcoming</sl-option>
+        <sl-select label="Status" clearable>
+          <% statuses.forEach(item => { %>
+          <sl-option value="<%= item %>"><%= utils.convertStatusName(item) %></sl-option>
+          <% }) %>
         </sl-select>
       </div>
     </div>

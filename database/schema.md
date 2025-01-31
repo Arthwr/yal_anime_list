@@ -14,7 +14,7 @@
 | `title_id`      | INT             | PRIMARY KEY                 | Unique ID for each anime.       |
 | `title`         | VARCHAR(255)    | NOT NULL, UNIQUE            | Title of the anime.             |
 | `description`   | TEXT            |                             | Description of the anime.       |
-| `release_date`  | DATE            |                             | Release date of the anime.      |
+| `release_date`  | INT             |                             | Release date of the anime.      |
 | `status_id`     | INT             | FOREIGN KEY                 | References `statuses.status_id` |
 | `image_url`     | VARCHAR(2048)   | NOT NULL                    | URL to the anime cover image.   |
 | `average_score` | INT             |                             | Average score of anime title.   |

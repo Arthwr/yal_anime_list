@@ -48,8 +48,7 @@ async function fetchAndLoadMoreTitles(observer, sentry) {
     page = Number(sentry.dataset.page);
 
     const currentPath = window.location.pathname;
-
-    const category = currentPath === "/" ? "everything" : currentPath.substring(1);
+    const category = currentPath === "/" ? "everything" : decodeURIComponent(currentPath.substring(1));
     const response = await fetch(`/titles/${category}/${page}`);
     const result = await response.json();
 
@@ -91,7 +90,6 @@ function appendNewTitles(html, sentry, observer) {
 function createObserver() {
   const sentry = document.querySelector("#sentry");
   if (!sentry) {
-    console.log("Sentry element not found");
     return;
   }
   const observer = new IntersectionObserver(async (entries) => {

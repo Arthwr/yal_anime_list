@@ -1,8 +1,11 @@
 <nav>
   <ul>
-    <li><a href="/">Everything</a></li>
-    <li><a href="/watching">Watching</a></li>
-    <li><a href="/completed">Completed</a></li>
-    <li><a href="/plan-to-watch">Plan to Watch</a></li>
+    <% categories.forEach(item => { %>
+      <li>
+        <a href="<%= item.toLowerCase() === 'everything' ? '/' : '/' + item.toLowerCase() %>">
+          <%= item %>
+        </a>
+    </li>
+    <% }) %>
   </ul>
 </nav>

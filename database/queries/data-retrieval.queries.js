@@ -1,4 +1,11 @@
 module.exports = {
+  GET_METADATA: `
+  SELECT
+    ARRAY(SELECT DISTINCT name FROM statuses) as statuses,
+    ARRAY(SELECT DISTINCT release_date FROM anime_titles) as years,
+    ARRAY(SELECT DISTINCT name FROM genre_list) as genres,
+    ARRAY(SELECT DISTINCT name FROM categories) as categories
+  `,
   GET_CATEGORY: `
   SELECT category_id FROM categories WHERE name ILIKE $1;
   `,
