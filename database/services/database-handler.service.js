@@ -29,6 +29,10 @@ class DatabaseService {
   static async getMoreTitles(categoryName, offset) {
     return await this.query(queries.GET_TITLES, [categoryName, offset]);
   }
+
+  static async searchTitles(query, genresArray, yearsArray, status, categoryName) {
+    return await this.query(queries.SEARCH_TITLES, [query, genresArray, yearsArray, status, categoryName]);
+  }
 }
 
 module.exports = DatabaseService;

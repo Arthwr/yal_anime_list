@@ -27,7 +27,7 @@ module.exports = {
       .join(" ");
   },
 
-  convertGenresToHtmlValues: (string) => {
+  convertToHtmlValues: (string) => {
     return string.replace(/ /g, "_");
   },
 

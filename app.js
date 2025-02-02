@@ -1,7 +1,7 @@
 const dotenv = require("dotenv");
 const path = require("node:path");
 const express = require("express");
-const utils = require("./utils/helpers");
+const helpers = require("./helpers/helpers");
 const indexRouter = require("./routes/indexRouter");
 const titlesRouter = require("./routes/titlesRouter");
 const errorHandler = require("./middleware/errorHandler");
@@ -23,7 +23,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 // Passing helper functions
-app.locals.utils = utils;
+app.locals.utils = helpers;
 
 // Routes
 app.use("/", indexRouter);

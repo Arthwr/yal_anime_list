@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,14 +27,14 @@
             <%- include("partials/categories", { categories }) %>
           </div>
           <div slot="end" class="right">
-            <%- include("partials/form", { genres, years, statuses }) %>
+            <%- include("partials/form", { genres, years, statuses, currentCategory }) %>
             <section class="titles">
               <div id="titles-container" class="grid-wrapper">
                 <% if (titles && titles.length > 0) { %>
                   <%- include("partials/titles", { titles }) %>
                 <% } else { %>
                   <div class="no-data">
-                    <p>No titles available for this category</p>
+                    <p>No titles available for this category or search</p>
                     <img src="/assets/spike.gif" alt="" />
                   </div>
                 <% } %>

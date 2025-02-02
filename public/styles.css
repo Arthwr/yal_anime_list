@@ -265,9 +265,8 @@ sl-icon-button {
 /* Result */
 .grid-wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, auto));
   gap: var(--sl-spacing-medium);
-  justify-items: center;
   padding: var(--sl-spacing-large);
 }
 

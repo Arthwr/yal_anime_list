@@ -1,28 +1,29 @@
 <section class="form-container">
   <form action="/search" method="get" id="search-form">
+    <input type="hidden" name="c" value="<%= utils.convertToHtmlValues(currentCategory) %>" />
     <div class="search-container">
       <search>
-        <sl-input label="Search" name="query" clearable></sl-input>
+        <sl-input label="Search" name="q" clearable autocomplete="off"></sl-input>
       </search>
       <sl-button type="submit" variant="primary" form="search-form">Search</sl-button>
     </div>
     <div class="input-container">
       <div class="genre">
-        <sl-select label="Genre" value="" multiple clearable max-options-visible="2">
+        <sl-select name="g" label="Genre" value="" multiple clearable max-options-visible="2">
           <% genres.forEach(item => { %>
-          <sl-option value="<%= utils.convertGenresToHtmlValues(item) %>"><%= item %></sl-option>
+          <sl-option value="<%= utils.convertToHtmlValues(item) %>"><%= item %></sl-option>
           <% }) %>
         </sl-select>
       </div>
       <div class="year">
-        <sl-select label="Year" multiple clearable max-options-visible="2">
+        <sl-select name="y" label="Year" multiple clearable max-options-visible="2">
           <% years.forEach(item => { %>
           <sl-option value="<%= item %>"><%= item %></sl-option>
           <% }) %>
         </sl-select>
       </div>
       <div class="status">
-        <sl-select label="Status" clearable>
+        <sl-select name="s" label="Status" clearable>
           <% statuses.forEach(item => { %>
           <sl-option value="<%= item %>"><%= utils.convertStatusName(item) %></sl-option>
           <% }) %>
