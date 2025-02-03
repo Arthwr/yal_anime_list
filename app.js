@@ -3,8 +3,7 @@ const path = require("node:path");
 const express = require("express");
 const helpers = require("./helpers/helpers");
 const indexRouter = require("./routes/indexRouter");
-const titlesRouter = require("./routes/titlesRouter");
-const errorHandler = require("./middleware/errorHandler");
+const errorHandler = require("./controllers/middleware/errorHandler");
 
 if (process.env.NODE_ENV === "production") {
   dotenv.config({ path: "./.env.production" });
@@ -27,7 +26,6 @@ app.locals.utils = helpers;
 
 // Routes
 app.use("/", indexRouter);
-app.use("/titles", titlesRouter);
 
 // Error handling
 app.use((req, res, next) => {

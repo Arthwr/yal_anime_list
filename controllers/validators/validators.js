@@ -55,14 +55,6 @@ const validateSearchInput = () => {
       .isLength({ max: 20 })
       .isIn(values.statuses)
       .withMessage("Invalid status selected"),
-
-    // category string
-    query("c")
-      .trim()
-      .customSanitizer((value) => decodeURIComponent(value))
-      .customSanitizer((value) => value.replace(/[-_]/g, " "))
-      .isAlpha("en-US", { ignore: " " })
-      .withMessage("Category can only contain letters, spaces, underscore or hyphens"),
   ];
 };
 

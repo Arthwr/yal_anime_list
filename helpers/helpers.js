@@ -7,6 +7,10 @@ const statusTagColors = {
 };
 
 module.exports = {
+  getStatusColor: (status) => {
+    return statusTagColors[status] || "neutral";
+  },
+
   convertUserScore: (score, maxScore = 5) => {
     if (typeof score !== "number" || score < 0 || score > 100) {
       return 0;
@@ -31,7 +35,11 @@ module.exports = {
     return string.replace(/ /g, "_");
   },
 
-  getStatusColor: (status) => {
-    return statusTagColors[status] || "neutral";
+  convertFormState: (data) => {
+    if (!data) return null;
+
+    if (Array.isArray(data)) return data.join(" ");
+
+    return data;
   },
 };

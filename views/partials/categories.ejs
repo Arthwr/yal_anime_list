@@ -1,10 +1,8 @@
 <nav>
   <ul>
     <% categories.forEach(item => { %>
-      <li>
-        <a href="<%= item.toLowerCase() === 'everything' ? '/' : '/' + item.toLowerCase() %>">
-          <%= item %>
-        </a>
+    <li>
+      <a href="<%= '/' + item.toLowerCase() + '/' %>"> <%= item %> </a>
     </li>
     <% }) %>
   </ul>

@@ -6,8 +6,11 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.19.1/cdn/themes/light.css" />
     <link rel="stylesheet" href="/styles.css" />
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.19.1/cdn/shoelace-autoloader.js"></script>
-    <script src="js/scripts.js" defer></script>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.19.1/cdn/shoelace-autoloader.js"
+    ></script>
+    <script src="/js/scripts.js" defer></script>
     <title>YAL</title>
   </head>
   <body>
@@ -24,22 +27,19 @@
         <sl-split-panel class="split-group" position-in-pixels="350" snap="350px">
           <sl-icon slot="divider" name="grip-vertical"></sl-icon>
           <div slot="start" class="left">
-            <%- include("partials/categories", { categories }) %>
+            <%- include("partials/categories", { categories: metaData.categories }) %>
           </div>
           <div slot="end" class="right">
-            <%- include("partials/form", { genres, years, statuses, currentCategory }) %>
+            <%- include("partials/form", { ...metaData, ...formState }) %>
             <section class="titles">
               <div id="titles-container" class="grid-wrapper">
-                <% if (titles && titles.length > 0) { %>
-                  <%- include("partials/titles", { titles }) %>
-                <% } else { %>
-                  <div class="no-data">
-                    <p>No titles available for this category or search</p>
-                    <img src="/assets/spike.gif" alt="" />
-                  </div>
-                <% } %>
-                <% if (titles && titles.length > 0) { %>
-                  <div id="sentry" data-page="1"></div>
+                <% if (titles && titles.length > 0) { %> <%- include("partials/titles", { titles }) %> <% } else { %>
+                <div class="no-data">
+                  <p>No titles available for this category or search</p>
+                  <img src="/assets/spike.gif" alt="" />
+                </div>
+                <% } %> <% if (titles && titles.length > 0) { %>
+                <div id="sentry" data-page="1"></div>
                 <% } %>
               </div>
             </section>
@@ -48,5 +48,4 @@
       </div>
     </main>
   </body>
-
 </html>
