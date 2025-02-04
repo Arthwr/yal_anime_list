@@ -1,7 +1,7 @@
-const { validatePageParam } = require("./validators/validators");
+const { validatePageParam, validateSearchInput } = require("./validators/validators");
 const asyncHandler = require("./utils/asyncHandler");
 const parseQueryParams = require("./utils/parseQueryParams");
-const handleValidationErrors = require("./validators/handleValidationErrors");
+const handleValidationErrors = require("./middleware/handleValidationErrors");
 const DatabaseService = require("../database/services/database-handler.service");
 
 const INITIAL_PAGE_SIZE = 50;
@@ -22,9 +22,9 @@ const indexGetCategory = [
 ];
 
 const indexGetSearch = [
+  validateSearchInput(),
+  handleValidationErrors,
   asyncHandler(async (req, res) => {
-    handleValidationErrors(req);
-
     const { category } = req.params;
     const queryParams = parseQueryParams(req.query);
 
@@ -43,9 +43,8 @@ const indexGetSearch = [
 
 const indexLoadMoreTitles = [
   validatePageParam(),
+  handleValidationErrors,
   asyncHandler(async (req, res) => {
-    handleValidationErrors(req);
-
     const { category, page } = req.params;
     const offset = INITIAL_PAGE_SIZE + LOAD_MORE_SIZE * (page - 1);
     const queryParams = parseQueryParams(req.query);

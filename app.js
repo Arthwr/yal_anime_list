@@ -1,6 +1,7 @@
 const dotenv = require("dotenv");
 const path = require("node:path");
 const express = require("express");
+const helmet = require("./controllers/middleware/helmet");
 const helpers = require("./helpers/helpers");
 const indexRouter = require("./routes/indexRouter");
 const errorHandler = require("./controllers/middleware/errorHandler");
@@ -13,6 +14,8 @@ if (process.env.NODE_ENV === "production") {
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+app.use(helmet);
 
 // App middleware set up
 app.use(express.urlencoded({ extended: true }));
