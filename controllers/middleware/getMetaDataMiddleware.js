@@ -1,10 +1,13 @@
-const { validateCategoryParam } = require("../validators/validators");
+const { validateCategoryParam, validateSearchInput } = require("../validators/validators");
 const asyncHandler = require("../utils/asyncHandler");
 const DatabaseService = require("../../database/services/database-handler.service");
+const handleValidationErrors = require("../validators/handleValidationErrors");
 
 module.exports = [
   validateCategoryParam(),
+  validateSearchInput(),
   asyncHandler(async (req, res, next) => {
+    handleValidationErrors(req);
     const category = req.params.category.replace(/-/g, " ");
     const categoriesResult = await DatabaseService.checkCategoryName(category);
     if (!categoriesResult || categoriesResult.length === 0) {

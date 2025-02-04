@@ -1,4 +1,5 @@
 const { param, query } = require("express-validator");
+
 const values = require("../../database/data/default-table-values");
 
 const validateCategoryParam = () => {

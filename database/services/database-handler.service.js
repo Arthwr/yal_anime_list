@@ -26,8 +26,8 @@ class DatabaseService {
     return await this.query(queries.GET_TITLES_BY_CATEGORY, [categoryName]);
   }
 
-  static async getMoreTitles(categoryName, offset) {
-    return await this.query(queries.GET_TITLES, [categoryName, offset]);
+  static async getMoreTitles(query, genresArray, yearsArray, status, categoryName, offset) {
+    return await this.query(queries.GET_TITLES, [query, genresArray, yearsArray, status, categoryName, offset]);
   }
 
   static async searchTitles(query, genresArray, yearsArray, status, categoryName) {

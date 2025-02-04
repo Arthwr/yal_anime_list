@@ -11,7 +11,7 @@ indexRouter.get("/", indexController.indexGetEverything);
 indexRouter.use("/:category", getMetaDataMiddleware);
 
 // Routes
-indexRouter.get("/:category", indexController.indexGetCategory);
+indexRouter.get("/:category",  indexController.indexGetCategory);
 indexRouter.get("/:category/search", indexController.indexGetSearch);
 
 // API endpoint

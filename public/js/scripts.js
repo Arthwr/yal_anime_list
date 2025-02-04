@@ -50,7 +50,10 @@ async function fetchAndLoadMoreTitles(observer, sentry) {
     const url = new URL(window.location.href);
     const pathParts = url.pathname.split("/").filter((part) => part.length > 0);
     const category = decodeURIComponent(pathParts[0]);
-    const response = await fetch(`/${category}/${page}`);
+
+    const searchParams = new URLSearchParams(window.location.search);
+
+    const response = await fetch(`/${category}/${page}?${searchParams.toString()}`);
     const result = await response.json();
 
     if (!response.ok) {
@@ -64,7 +67,7 @@ async function fetchAndLoadMoreTitles(observer, sentry) {
       return;
     }
   } catch (error) {
-    console.error("Failed to fetch additional titles");
+    console.error("Failed to fetch additional titles:", error.message);
   } finally {
     sentry.dataset.page = page + 1;
     isFetching = false;
