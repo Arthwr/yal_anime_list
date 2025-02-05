@@ -1,5 +1,4 @@
 const { param, query } = require("express-validator");
-
 const values = require("../../database/data/default-table-values");
 
 const validateCategoryParam = () => {
@@ -13,7 +12,7 @@ const validateCategoryParam = () => {
 };
 
 const validatePageParam = () => {
-  return param("page").isInt({ min: 1 }).toInt();
+  return param("page").isInt({ min: 1 }).toInt().withMessage("Page can only contain digits");
 };
 
 const validateSearchInput = () => {

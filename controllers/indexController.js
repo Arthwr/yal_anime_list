@@ -3,6 +3,7 @@ const asyncHandler = require("./utils/asyncHandler");
 const parseQueryParams = require("./utils/parseQueryParams");
 const handleValidationErrors = require("./middleware/handleValidationErrors");
 const DatabaseService = require("../database/services/database-handler.service");
+const AppError = require("../errors/AppError");
 
 const INITIAL_PAGE_SIZE = 50;
 const LOAD_MORE_SIZE = 20;
@@ -44,7 +45,7 @@ const indexGetSearch = [
 const indexLoadMoreTitles = [
   validatePageParam(),
   handleValidationErrors,
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req, res, next) => {
     const { category, page } = req.params;
     const offset = INITIAL_PAGE_SIZE + LOAD_MORE_SIZE * (page - 1);
     const queryParams = parseQueryParams(req.query);
@@ -64,8 +65,7 @@ const indexLoadMoreTitles = [
 
     res.render("partials/titles", { titles }, (error, html) => {
       if (error) {
-        console.error("Error rendering titles: ", error);
-        return res.status(500).json({ error: "Internal server error" });
+        return next(new AppError(`Failed to fetch additional titles : ${error.message}`, 500));
       }
 
       return res.json({ html, noMoreItems: false });

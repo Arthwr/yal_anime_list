@@ -5,6 +5,7 @@ const helmet = require("./controllers/middleware/helmet");
 const helpers = require("./helpers/helpers");
 const indexRouter = require("./routes/indexRouter");
 const errorHandler = require("./controllers/middleware/errorHandler");
+const AppError = require("./errors/AppError");
 
 if (process.env.NODE_ENV === "production") {
   dotenv.config({ path: "./.env.production" });
@@ -15,6 +16,7 @@ if (process.env.NODE_ENV === "production") {
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Helmet
 app.use(helmet);
 
 // App middleware set up
@@ -32,7 +34,7 @@ app.use("/", indexRouter);
 
 // Error handling
 app.use((req, res, next) => {
-  next({ status: 404, message: "Route not found" });
+  next(new AppError("Route not found", 404));
 });
 app.use(errorHandler);
 
