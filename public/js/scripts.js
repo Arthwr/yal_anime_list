@@ -1,11 +1,4 @@
 // prettier-ignore
-const options = {
-  headers: {
-    'X-Requested-With': "XMLHttpRequest",
-    'Accept': "application/json",
-  },
-};
-
 function handleActiveNavLinks() {
   const currentPath = window.location.pathname;
   const links = document.querySelectorAll(".left a");
@@ -61,7 +54,7 @@ async function fetchAndLoadMoreTitles(observer, sentry) {
 
     const searchParams = new URLSearchParams(window.location.search);
 
-    const response = await fetch(`/${category}/${page}?${searchParams.toString()}`, options);
+    const response = await fetch(`/${category}/${page}?${searchParams.toString()}`);
     const result = await response.json();
 
     if (!response.ok) {
@@ -75,7 +68,7 @@ async function fetchAndLoadMoreTitles(observer, sentry) {
       return;
     }
   } catch (error) {
-    console.error("Failed to fetch additional titles:", error.message);
+    console.error("Failed to fetch additional titles:", error);
   } finally {
     sentry.dataset.page = page + 1;
     isFetching = false;

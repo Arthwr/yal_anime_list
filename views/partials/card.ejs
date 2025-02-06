@@ -1,28 +1,41 @@
 <sl-card class="card-overview">
-  <div slot="header">
-    <%= item.title %>
-  </div>
-  <img
-    slot="image"
-    src="<%= item.image_url %>"
-    alt="<%= item.title %>"
-    width="350"
-    height="auto"
-  />
+  <div slot="header"><%= item.title %></div>
+  <img slot="image" src="<%= item.image_url %>" alt="<%= item.title %>" width="350" height="auto" />
   <div class="description-container">
     <div><%- item.description %></div>
   </div>
   <div class="card-footer" slot="footer">
     <div class="detect-hover">
-      <sl-rating label="community rating" readonly value="<%= utils.convertUserScore(item.average_score) %>"></sl-rating>
+      <sl-rating
+        label="community rating"
+        readonly
+        value="<%= utils.convertUserScore(item.average_score) %>"
+      ></sl-rating>
       <span data-score="<%= item.average_score %>"></span>
     </div>
     <div>Year: <%= item.release_date %></div>
-    <sl-tag variant="<%= utils.getStatusColor(item.status_name)%>"> <%= utils.convertStatusName(item.status_name) %></sl-tag>
+    <sl-tag variant="<%= utils.getStatusColor(item.status_name)%>">
+      <%= utils.convertStatusName(item.status_name) %></sl-tag
+    >
     <div class="genre-group">
       <% item.genres.forEach(genre => { %>
-       <sl-tag variant="neutral" size="small"><%= genre %></sl-tag>
+      <sl-tag variant="neutral" size="small"><%= genre %></sl-tag>
       <% }) %>
+    </div>
+    <div class="card-actions">
+      <sl-dropdown distance="5">
+        <sl-tooltip slot="trigger" class="hover" content="Assign category" style="display: inline-block">
+          <sl-icon-button name="bookmark" label="bookmark"></sl-icon-button>
+        </sl-tooltip>
+        <sl-menu>
+          <% categories.forEach(category => { %>
+            <% if (category !== "Everything") { %>
+              <sl-menu-item><%= category %></sl-menu-item>
+            <% } %>
+          <% }) %>
+        </sl-menu>
+      </sl-dropdown>
+      <sl-tag variant="neutral">Unassigned</sl-tag>
     </div>
   </div>
 </sl-card>

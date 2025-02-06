@@ -33,7 +33,8 @@
             <%- include("partials/form", { ...metaData, ...formState }) %>
             <section class="titles">
               <div id="titles-container" class="grid-wrapper">
-                <% if (titles && titles.length > 0) { %> <%- include("partials/titles", { titles }) %> <% } else { %>
+                <% if (titles && titles.length > 0) { %> <%- include("partials/titles", { titles, categories:
+                metaData.categories }) %> <% } else { %>
                 <div class="no-data">
                   <p>No titles available for this category or search</p>
                   <img src="/assets/spike.gif" alt="" />
