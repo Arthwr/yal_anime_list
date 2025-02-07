@@ -11,7 +11,7 @@ module.exports = [
     const category = req.params.category.replace(/-/g, " ");
     const categoriesResult = await DatabaseService.checkCategoryName(category);
     if (!categoriesResult || categoriesResult.length === 0) {
-      return next(new AppError("Requested category doesn't exist", 400));
+      return next(new AppError(`Requested category '${category}' doesn't exist`, 400));
     }
 
     res.locals.metaData = await DatabaseService.getMetaData();

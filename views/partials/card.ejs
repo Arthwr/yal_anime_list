@@ -15,8 +15,8 @@
     </div>
     <div>Year: <%= item.release_date %></div>
     <sl-tag variant="<%= utils.getStatusColor(item.status_name)%>">
-      <%= utils.convertStatusName(item.status_name) %></sl-tag
-    >
+      <%= utils.convertStatusName(item.status_name) %>
+    </sl-tag>
     <div class="genre-group">
       <% item.genres.forEach(genre => { %>
       <sl-tag variant="neutral" size="small"><%= genre %></sl-tag>
@@ -27,10 +27,10 @@
         <sl-tooltip slot="trigger" class="hover" content="Assign category" style="display: inline-block">
           <sl-icon-button name="bookmark" label="bookmark"></sl-icon-button>
         </sl-tooltip>
-        <sl-menu>
+        <sl-menu class="category-menu">
           <% categories.forEach(category => { %>
             <% if (category !== "Everything") { %>
-              <sl-menu-item><%= category %></sl-menu-item>
+              <sl-menu-item value="<%= category %>"><%= category %></sl-menu-item>
             <% } %>
           <% }) %>
         </sl-menu>

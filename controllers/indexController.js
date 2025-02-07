@@ -63,7 +63,7 @@ const indexLoadMoreTitles = [
       return res.json({ html: "", noMoreItems: true });
     }
 
-    res.render("partials/titles", { titles }, (error, html) => {
+    res.render("partials/titles", { titles, categories: res.locals.metaData.categories }, (error, html) => {
       if (error) {
         return next(new AppError(`Failed to fetch additional titles : ${error.message}`, 500));
       }
