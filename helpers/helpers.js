@@ -6,9 +6,22 @@ const statusTagColors = {
   HIATUS: "danger",
 };
 
+// prettier-ignore
+const categoryTagColors = {
+  "Completed": "lightgreen",
+  "Plan to Watch": "coral",
+  "Watching": "lightblue",
+  "Dropped": "tomato",
+  "On Hold": "yellow"
+};
+
 module.exports = {
   getStatusColor: (status) => {
     return statusTagColors[status] || "neutral";
+  },
+
+  getCategoryColor: (categoryName) => {
+    return categoryTagColors[categoryName] || "";
   },
 
   convertUserScore: (score, maxScore = 5) => {

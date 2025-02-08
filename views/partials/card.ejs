@@ -35,7 +35,7 @@
           <% }) %>
         </sl-menu>
       </sl-dropdown>
-      <sl-tag variant="neutral"><%= item.category_name === "Everything" ? "Unassigned" : item.category_name %></sl-tag>
+      <sl-tag class="<%= utils.getCategoryColor(item.category_name) %>" variant="neutral"><%= item.category_name === "Everything" ? "Unassigned" : item.category_name %></sl-tag>
     </div>
   </div>
 </sl-card>

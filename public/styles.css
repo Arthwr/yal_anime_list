@@ -1,5 +1,10 @@
 :root {
   font-family: var(--sl-font-sans);
+  --sl-color-tomato: #ff6347;
+  --sl-color-lightblue: #add8e6;
+  --sl-color-coral: #ff7f50;
+  --sl-color-lightyellow: #ffeb3b;
+  --sl-color-lightgreen: #8bc34a;
 }
 
 h1,
@@ -63,7 +68,7 @@ main {
 }
 
 .highlight-blue {
-  background: linear-gradient(to top, var(--sl-color-primary-200) 40%, transparent 40%);
+  background: linear-gradient(to top, var(background-color-200) 40%, transparent 40%);
 }
 
 .highlight-red {
@@ -94,7 +99,7 @@ sl-split-panel::part(panel) {
 }
 
 .split-panel-divider sl-split-panel::part(divider) {
-  background-color: var(--sl-color-primary-600);
+  background-color: var(background-color-600);
 }
 
 .split-panel-divider sl-icon {
@@ -102,7 +107,7 @@ sl-split-panel::part(panel) {
   top: 50%;
   transform: translateX(-50%);
   border-radius: var(--sl-border-radius-small);
-  background: var(--sl-color-primary-600);
+  background: var(background-color-600);
   color: var(--sl-color-neutral-0);
   padding: var(--sl-spacing-medium) 0;
 }
@@ -146,7 +151,7 @@ sl-split-panel::part(panel) {
 
 .left a::before {
   content: "";
-  background-color: var(--sl-color-primary-200);
+  background-color: var(background-color-200);
   position: absolute;
   left: 0;
   bottom: 3px;
@@ -293,7 +298,7 @@ sl-card::part(base) {
 }
 
 sl-card::part(header) {
-  color: var(--sl-color-primary-500);
+  color: var(background-color-500);
   font-size: 1.25rem;
   text-align: center;
   --padding: var(--sl-spacing-2x-large);
@@ -397,4 +402,25 @@ sl-card::part(body)::-webkit-scrollbar-track {
 #titles-container img {
   max-width: 350px;
   height: auto;
+}
+
+/* Tag colors */
+.tomato::part(base) {
+  color: #9b2d2f;
+}
+
+.lightblue::part(base) {
+  color: #1f5a7f;
+}
+
+.coral::part(base) {
+  color: #bf6e5f;
+}
+
+.lightyellow::part(base) {
+  color: #8e6a2b;
+}
+
+.lightgreen::part(base) {
+  color: #2c6f47;
 }
