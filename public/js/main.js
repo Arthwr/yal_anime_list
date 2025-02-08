@@ -1,5 +1,6 @@
 import createObserver from "./modules/scrollObserver.js";
 import updateItemCategory from "./modules/updateItemCategory.js";
+import { alertManager } from "./modules/alertManager.js";
 
 function setupScoreHover() {
   const titlesContainer = document.querySelector(".grid-wrapper");
@@ -35,7 +36,7 @@ function setupCategoryAssign() {
       const categoryName = event.detail.item.value;
       const titleId = event.target.closest(".card-overview").dataset.id;
       updateItemCategory(categoryName, titleId)
-        .then((response) => console.log(response))
+        .then((response) => alertManager.showAlert(response))
         .catch((error) => {
           console.error("Error in setupCategoryAssign", error);
         });

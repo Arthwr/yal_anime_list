@@ -55,4 +55,8 @@ module.exports = {
 
     return data;
   },
+
+  sortYears: (releaseDates) => {
+    return releaseDates.sort((b, a) => b - a);
+  },
 };

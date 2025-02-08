@@ -23,7 +23,7 @@
       </div>
       <div class="year">
         <sl-select name="y" label="Year" value="<%= utils.convertFormState(formState.yearsArray) %>"  multiple clearable max-options-visible="2">
-          <% years.forEach(item => { %>
+          <% utils.sortYears(years).forEach(item => { %>
           <sl-option value="<%= item %>"><%= item %></sl-option>
           <% }) %>
         </sl-select>

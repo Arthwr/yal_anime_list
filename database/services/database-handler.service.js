@@ -83,12 +83,12 @@ class DatabaseService {
         if (result.rowCount > 0) {
           return {
             success: true,
-            message: `Category "${categoryName}" assigned/updated successfully`,
+            message: `Selected title assigned to "${categoryName}"`,
           };
         } else {
           return {
             success: false,
-            message: `Category ${categoryName} assignment/update failed`,
+            message: `Couldn't assign selected title to "${categoryName}".`,
           };
         }
       });

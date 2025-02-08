@@ -25,7 +25,7 @@
     <div class="card-actions">
       <sl-dropdown distance="5">
         <sl-tooltip slot="trigger" class="hover" content="Assign category" style="display: inline-block">
-          <sl-icon-button name="bookmark" label="bookmark"></sl-icon-button>
+          <sl-icon-button name="<%= item.category_name === "Everything" ? "bookmark" : "bookmark-check-fill" %>" label="bookmark"></sl-icon-button>
         </sl-tooltip>
         <sl-menu class="category-menu">
           <% categories.forEach(category => { %>
