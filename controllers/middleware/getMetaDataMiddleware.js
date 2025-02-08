@@ -9,7 +9,7 @@ module.exports = [
   handleValidationErrors,
   asyncHandler(async (req, res, next) => {
     const category = req.params.category.replace(/-/g, " ");
-    const categoriesResult = await DatabaseService.checkCategoryName(category);
+    const categoriesResult = await DatabaseService.getCategoryName(category);
     if (!categoriesResult || categoriesResult.length === 0) {
       return next(new AppError(`Requested category '${category}' doesn't exist`, 400));
     }

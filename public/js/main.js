@@ -1,4 +1,5 @@
-import createObserver from "./scrollObserver.js";
+import createObserver from "./modules/scrollObserver.js";
+import updateItemCategory from "./modules/updateItemCategory.js";
 
 function setupScoreHover() {
   const titlesContainer = document.querySelector(".grid-wrapper");
@@ -31,8 +32,13 @@ function setupCategoryAssign() {
     const targetMenu = event.target;
 
     if (targetMenu instanceof Element && targetMenu.classList.contains("category-menu")) {
-      const item = event.detail.item;
-      console.log("Selected item: ", item.value);
+      const categoryName = event.detail.item.value;
+      const titleId = event.target.closest(".card-overview").dataset.id;
+      updateItemCategory(categoryName, titleId)
+        .then((response) => console.log(response))
+        .catch((error) => {
+          console.error("Error in setupCategoryAssign", error);
+        });
     }
   });
 }

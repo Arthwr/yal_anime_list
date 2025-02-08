@@ -43,10 +43,11 @@ CREATE TABLE IF NOT EXISTS categories (
 
 -- Anime Categories Junction Table
 CREATE TABLE IF NOT EXISTS anime_categories (
-    category_id INT NOT NULL,
     anime_id INT NOT NULL,
+    category_id INT NOT NULL,
+    is_default_category BOOLEAN NOT NULL DEFAULT false,
     added_at TIMESTAMP DEFAULT NOW(),
-    PRIMARY KEY (category_id, anime_id),
+    PRIMARY KEY (anime_id, category_id),
     CONSTRAINT fk_category_id FOREIGN KEY (category_id)
         REFERENCES categories (category_id),
     CONSTRAINT fk_anime_id FOREIGN KEY (anime_id)
@@ -54,16 +55,23 @@ CREATE TABLE IF NOT EXISTS anime_categories (
 );
 `;
 
-const TRUNCATE_TABLES = `
-TRUNCATE TABLE anime_categories CASCADE;
-TRUNCATE TABLE anime_genres CASCADE;
-TRUNCATE TABLE anime_titles CASCADE;
-TRUNCATE TABLE statuses CASCADE;
-TRUNCATE TABLE genre_list CASCADE;
-TRUNCATE TABLE categories CASCADE;
+const ASSIGN_CONSTRAINT = `
+CREATE UNIQUE INDEX uniq_anime_custom_category
+    ON anime_categories(anime_id)
+    WHERE is_default_category = false;
+`;
+
+const DROP_TABLES = `
+DROP TABLE IF EXISTS anime_genres CASCADE;
+DROP TABLE IF EXISTS anime_categories CASCADE;
+DROP TABLE IF EXISTS anime_titles CASCADE;
+DROP TABLE IF EXISTS statuses CASCADE;
+DROP TABLE IF EXISTS genre_list CASCADE;
+DROP TABLE IF EXISTS categories CASCADE;
 `;
 
 module.exports = {
   CREATE_TABLES: TABLE_SCHEMA,
-  TRUNCATE_TABLES,
+  ASSIGN_CONSTRAINT,
+  DROP_TABLES,
 };

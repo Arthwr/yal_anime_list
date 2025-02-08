@@ -4,6 +4,7 @@ const express = require("express");
 const helmet = require("./controllers/middleware/helmet");
 const helpers = require("./helpers/helpers");
 const indexRouter = require("./routes/indexRouter");
+const assignRouter = require("./routes/assignRouter");
 const errorHandler = require("./controllers/middleware/errorHandler");
 const AppError = require("./errors/AppError");
 
@@ -20,6 +21,7 @@ const PORT = process.env.PORT || 3000;
 app.use(helmet);
 
 // App middleware set up
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -30,6 +32,7 @@ app.set("view engine", "ejs");
 app.locals.utils = helpers;
 
 // Routes
+app.use("/assign-category", assignRouter);
 app.use("/", indexRouter);
 
 // Error handling

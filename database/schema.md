@@ -50,10 +50,13 @@
 
 ### 6. `anime_categories` Table
 
-| Field Name    | Data Type     | Constraints                        | Description                          |
-|---------------|---------------|------------------------------------|--------------------------------------|
-| `category_id` | INT           | PRIMARY KEY, FOREIGN KEY           | References `categories.category_id`. |
-| `anime_id`    | INT           | PRIMARY KEY, FOREIGN KEY           | References `anime_titles.title_id`.  |
-| `added_at`    | TIMESTAMP     | DEFAULT NOW()                      | Timestamp when the entry was added.  |
+| Field Name             | Data Type     | Constraints                                                            | Description                          |
+|------------------------|---------------|------------------------------------------------------------------------|--------------------------------------|
+| `anime_id`             | INT           | PRIMARY KEY, NOT NULL, FOREIGN KEY                                     | References `anime_titles.title_id`.  |
+| `category_id`          | INT           | NOT NULL, FOREIGN KEY                                                  | References `categories.category_id`. |
+| `is_default_category`  | BOOLEAN       | DEFAULT TRUE                                                           | Indicates if the category is default.|
+| `added_at`             | TIMESTAMP     | DEFAULT NOW()                                                          | Timestamp when the entry was added.  |
 
----
+**Constraints:**
+- Unique constraint on (`anime_id`, `category_id`) to prevent duplicate category assignments per anime.
+- Exclusion of the "Everything" category from this unique constraint to allow all titles to be part of this default category.

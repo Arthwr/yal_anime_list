@@ -1,4 +1,4 @@
-const { param, query } = require("express-validator");
+const { param, query, body } = require("express-validator");
 const values = require("../../database/data/default-table-values");
 
 const validateCategoryParam = () => {
@@ -58,4 +58,21 @@ const validateSearchInput = () => {
   ];
 };
 
-module.exports = { validateCategoryParam, validatePageParam, validateSearchInput };
+// prettier-ignore
+const validateCategoryAndTitleId = () => {
+  return [
+    body("categoryName")
+      .trim()
+      .isString()
+      .withMessage("Category name must be a string")
+      .isAlpha("en-US", { ignore: " -" })
+      .withMessage("Category name can only contain letters, spaces, and hyphens"),
+
+    body("titleId")
+    .isInt()
+    .withMessage("Title id must be an integer")
+    .toInt(),
+  ];
+};
+
+module.exports = { validateCategoryParam, validatePageParam, validateSearchInput, validateCategoryAndTitleId };

@@ -1,4 +1,4 @@
-<sl-card class="card-overview">
+<sl-card class="card-overview" data-id="<%= item.title_id %>">
   <div slot="header"><%= item.title %></div>
   <img slot="image" src="<%= item.image_url %>" alt="<%= item.title %>" width="350" height="auto" />
   <div class="description-container">
@@ -35,7 +35,7 @@
           <% }) %>
         </sl-menu>
       </sl-dropdown>
-      <sl-tag variant="neutral">Unassigned</sl-tag>
+      <sl-tag variant="neutral"><%= item.category_name === "Everything" ? "Unassigned" : item.category_name %></sl-tag>
     </div>
   </div>
 </sl-card>

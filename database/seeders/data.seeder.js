@@ -6,13 +6,13 @@ const tableQueries = require("../queries/table-creation.queries");
 const insertQueries = require("../queries/data-insertion.queries");
 
 class DataSeeder {
-  static async truncateTables(client) {
+  static async dropTables(client) {
     try {
-      console.log("Truncating tables...");
-      await client.query(tableQueries.TRUNCATE_TABLES);
-      console.log("Tables truncated successfully.");
+      console.log("Dropping tables...");
+      await client.query(tableQueries.DROP_TABLES);
+      console.log("Tables dropped successfully.");
     } catch (error) {
-      console.log("Error truncating tables: ", error);
+      console.log("Error dropping tables: ", error);
       throw error;
     }
   }
@@ -96,6 +96,10 @@ class DataSeeder {
       // Batch insert all anime titles to the default 'Everything' category
       console.log("Inserting category relationships...");
       await client.query(insertQueries.BATCH_INSERT_CATEGORIES);
+
+      // Assign unique partial index for anime_id and is_default_category
+      console.log("Creating partial uniq_anime_custom_category index...");
+      await client.query(tableQueries.ASSIGN_CONSTRAINT);
 
       console.log(`Seeded ${titles.length} anime entries from source file.`);
       const { rows } = await client.query("SELECT COUNT(title_id) FROM anime_titles;");

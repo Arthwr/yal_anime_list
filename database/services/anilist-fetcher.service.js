@@ -76,7 +76,11 @@ class AnilistFetcherService {
     }
   }
 
-  async _fetchDataRecursively() {
+  async _delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  async _fetchDataRecursively(retryCount = 3) {
     try {
       await this.rateLimiter.waitIfNeeded();
 
@@ -106,7 +110,15 @@ class AnilistFetcherService {
         message: error.message,
         page: this.pageNumber,
       });
-      throw error;
+
+      if (retryCount > 0) {
+        console.log(`Retrying fetch... attempts remaining: ${retryCount}`);
+        await this._delay(2000);
+        await this._fetchDataRecursively(retryCount - 1);
+      } else {
+        console.error("Max tries reached. Fetch failed.");
+        throw error;
+      }
     }
   }
 

@@ -73,8 +73,8 @@ module.exports = {
       FROM categories
       WHERE name = 'Everything'
     )
-    INSERT INTO anime_categories (category_id, anime_id)
-    SELECT default_category.category_id, anime_ids.title_id
+    INSERT INTO anime_categories (anime_id, category_id, is_default_category)
+    SELECT anime_ids.title_id, default_category.category_id, true
     FROM anime_ids, default_category
     ON CONFLICT (category_id, anime_id) DO NOTHING;
   `,

@@ -13,11 +13,11 @@ async function initializeDatabase() {
 
     await client.query("BEGIN");
 
+    // Clean old data
+    await AnilistDataSeeder.dropTables(client);
+
     // Create tables
     await AnilistDataSeeder.createTables(client);
-
-    // Clean old data
-    await AnilistDataSeeder.truncateTables(client);
 
     // Seed default values
     await AnilistDataSeeder.seedDefaultValues(client);
