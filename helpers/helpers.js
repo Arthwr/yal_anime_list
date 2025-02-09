@@ -8,11 +8,11 @@ const statusTagColors = {
 
 // prettier-ignore
 const categoryTagColors = {
-  "Completed": "lightgreen",
-  "Plan to Watch": "coral",
-  "Watching": "lightblue",
-  "Dropped": "tomato",
-  "On Hold": "yellow"
+  "Completed": "success",
+  "Plan to Watch": "primary",
+  "Watching": "primary",
+  "Dropped": "danger",
+  "On Hold": "warning"
 };
 
 module.exports = {
@@ -57,6 +57,6 @@ module.exports = {
   },
 
   sortYears: (releaseDates) => {
-    return releaseDates.sort((b, a) => b - a);
+    return releaseDates.sort((a, b) => b - a);
   },
 };

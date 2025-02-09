@@ -35,7 +35,7 @@
           <% }) %>
         </sl-menu>
       </sl-dropdown>
-      <sl-tag class="<%= utils.getCategoryColor(item.category_name) %>" variant="neutral"><%= item.category_name === "Everything" ? "Unassigned" : item.category_name %></sl-tag>
+      <sl-badge variant="<%= utils.getCategoryColor(item.category_name) %>" <%= item.category_name === "Plan to Watch" ? "pulse" : "" %>><%= item.category_name === "Everything" ? "Unassigned" : item.category_name %></sl-badge>
     </div>
   </div>
 </sl-card>

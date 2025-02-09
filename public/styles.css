@@ -404,23 +404,6 @@ sl-card::part(body)::-webkit-scrollbar-track {
   height: auto;
 }
 
-/* Tag colors */
-.tomato::part(base) {
-  color: #9b2d2f;
-}
-
-.lightblue::part(base) {
-  color: #1f5a7f;
-}
-
-.coral::part(base) {
-  color: #bf6e5f;
-}
-
-.lightyellow::part(base) {
-  color: #8e6a2b;
-}
-
-.lightgreen::part(base) {
-  color: #2c6f47;
+sl-badge {
+  transform: scale(1.2);
 }
