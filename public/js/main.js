@@ -59,8 +59,27 @@ function setupActiveLinks() {
   });
 }
 
+async function waitCustomElementsLoad() {
+  const definedElements = new Set();
+  const allElements = document.querySelectorAll("*");
+
+  const promises = Array.from(allElements).map(async (element) => {
+    const tagName = element.tagName.toLowerCase();
+    if (tagName.includes("-")) {
+      if (!definedElements.has(tagName)) {
+        definedElements.add(tagName);
+        return customElements.whenDefined(tagName);
+      }
+    }
+  });
+
+  await Promise.all(promises);
+  document.body.classList.add("ready");
+}
+
 // Event listeners for animations and interactions
 document.addEventListener("DOMContentLoaded", () => {
+  waitCustomElementsLoad();
   setupActiveLinks();
   setupScoreHover();
   setupCategoryAssign();

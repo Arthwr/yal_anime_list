@@ -22,9 +22,15 @@ li {
 }
 
 body {
+  opacity: 0;
   padding: 0 var(--sl-spacing-2x-large);
   background-color: var(--sl-color-gray-50);
   color: var(--sl-color-sky-950);
+}
+
+body.ready {
+  opacity: 1;
+  transition: 0.25s opacity;
 }
 
 /* Heading */
