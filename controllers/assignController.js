@@ -9,12 +9,20 @@ const assignPostCategory = [
   asyncHandler(async (req, res) => {
     const { categoryName, titleId } = req.body;
 
-    if (!categoryName || !titleId) {
-      return res.status(400).json({ error: "missing title id or category name" });
+    if (!titleId) {
+      return res.status(400).json({ error: "missing title id" });
     }
 
-    const result = await DatabaseService.assignTitleToCategory(categoryName, titleId);
-    res.status(200).send(result);
+    if (!categoryName) {
+      return res.status(400).json({ error: "missing category name" });
+    }
+
+    const result =
+      categoryName === "Unassigned"
+        ? await DatabaseService.assignTitleToCategory(null, titleId)
+        : await DatabaseService.assignTitleToCategory(categoryName, titleId);
+
+    return res.status(200).send(result);
   }),
 ];
 

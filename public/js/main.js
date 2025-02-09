@@ -44,13 +44,14 @@ function setupCategoryAssign() {
   });
 }
 
-// prettier-ignore
 function setupActiveLinks() {
-  const currentPath = window.location.pathname;
+  const currentPathParts = window.location.pathname.split("/");
+  const currentPath = currentPathParts[1] || "";
   const links = document.querySelectorAll(".left a");
 
   links.forEach((link) => {
-    if (link.pathname === currentPath) {
+    const linkPath = link.pathname.slice(1, -1);
+    if (linkPath === currentPath) {
       link.classList.add("active");
     } else {
       link.classList.remove("active");

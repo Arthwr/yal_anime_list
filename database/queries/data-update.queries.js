@@ -13,4 +13,10 @@ module.exports = {
       category_id = EXCLUDED.category_id,
       added_at = NOW();
   `,
+
+  REMOVE_TITLE_FROM_CATEGORY: `
+  DELETE FROM anime_categories
+  WHERE anime_id = $1
+  AND is_default_category = false
+  `
 };

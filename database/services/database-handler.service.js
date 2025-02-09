@@ -70,25 +70,34 @@ class DatabaseService {
   static async assignTitleToCategory(categoryName, titleId) {
     try {
       return await this.withTransaction(async (client) => {
-        await this._ensureRecordsExists(client, retrievalQueries.GET_CATEGORY, `Category "${categoryName}" not found`, [
+         await this._ensureRecordsExists(client, retrievalQueries.GET_TITLE_ID, `Title id "${titleId}" not found`, [
+            titleId,
+          ]);
+
+        let result;
+
+        if (categoryName) {
+          await this._ensureRecordsExists(client, retrievalQueries.GET_CATEGORY, `Category "${categoryName}" not found`, [
           categoryName,
         ]);
+          result = await client.query(updateQueries.UPSERT_TITLE_TO_CATEGORY, [categoryName, titleId]);
+        } else {
+          result = await client.query(updateQueries.REMOVE_TITLE_FROM_CATEGORY, [titleId]);
+        }
 
-        await this._ensureRecordsExists(client, retrievalQueries.GET_TITLE_ID, `Title id "${titleId}" not found`, [
-          titleId,
-        ]);
-
-        const result = await client.query(updateQueries.UPSERT_TITLE_TO_CATEGORY, [categoryName, titleId]);
-
-        if (result.rowCount > 0) {
+        if (result && result.rowCount > 0) {
           return {
             success: true,
-            message: `Selected title assigned to "${categoryName}"`,
+            message: categoryName
+              ? `Selected title assigned to "${categoryName}"`
+              : `Selected title unassigned`,
           };
         } else {
           return {
             success: false,
-            message: `Couldn't assign selected title to "${categoryName}".`,
+            message: categoryName
+              ? `Couldn't assign selected title to "${categoryName}".`
+              : `Couldn't unassign selected title`,
           };
         }
       });

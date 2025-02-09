@@ -33,6 +33,7 @@
               <sl-menu-item value="<%= category %>"><%= category %></sl-menu-item>
             <% } %>
           <% }) %>
+          <sl-menu-item value="Unassigned">Unassign</sl-menu-tem>
         </sl-menu>
       </sl-dropdown>
       <sl-badge variant="<%= utils.getCategoryColor(item.category_name) %>" <%= item.category_name === "Plan to Watch" ? "pulse" : "" %>><%= item.category_name === "Everything" ? "Unassigned" : item.category_name %></sl-badge>
