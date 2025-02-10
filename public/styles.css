@@ -1,5 +1,6 @@
 :root {
-  font-family: var(--sl-font-sans);
+  font-family: Helvetica, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol";
   --sl-color-tomato: #ff6347;
   --sl-color-lightblue: #add8e6;
   --sl-color-coral: #ff7f50;
