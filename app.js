@@ -7,12 +7,9 @@ const indexRouter = require("./routes/indexRouter");
 const assignRouter = require("./routes/assignRouter");
 const errorHandler = require("./controllers/middleware/errorHandler");
 const AppError = require("./errors/AppError");
+const loadEnv = require("./helpers/loadEnv");
 
-if (process.env.NODE_ENV === "production") {
-  dotenv.config({ path: "./.env.production" });
-} else {
-  dotenv.config({ path: "./.env" });
-}
+loadEnv();
 
 const app = express();
 const PORT = process.env.PORT || 3000;

@@ -1,7 +1,9 @@
-require("dotenv").config();
 const { Client } = require("pg");
 const AnilistFetcherService = require("./services/anilist-fetcher.service");
 const AnilistDataSeeder = require("./seeders/data.seeder");
+const loadEnv = require("../helpers/loadEnv");
+
+loadEnv();
 
 async function initializeDatabase() {
   const client = new Client({

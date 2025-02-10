@@ -16,7 +16,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "NODE_ENV=development node --watch app.js",
-    "prod": "NODE_ENV=production node --watch app.js"
+    "prod": "NODE_ENV=production node app.js"
   },
   "keywords": [],
   "author": "",
