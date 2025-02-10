@@ -1,6 +1,7 @@
 # Anime Management WebApp
 
 Anime management web application that retrieves data from AniList GraphQL API to store and manage anime titles for personal use. 
+Adapted only for screen sizes from 768px and higher, while for the best experience 2560px is recommended. 
 
 - **Node.js**
 - **Express.js**
@@ -19,6 +20,11 @@ Anime management web application that retrieves data from AniList GraphQL API to
 - **Category Assignment**: Allows users to assign categories such as "Watching", "Completed", "Plan to Watch", etc., to each anime title.
 - **Combinational Search**: Supports combinational search by name query, genre (single or multiple), year (single or multiple), and status.
 - **Database Limitations**: Due to the free tier of Render hosting, the database is limited to a single month of use. However, the script can easily refetch titles, although assigned categories will be lost.
+
+# Preview
+Currently hosted at [render](https://yal-anime-list.onrender.com/everything/) until 20th of March 2025. 
+
+![yal-front](https://github.com/user-attachments/assets/c393a910-0ff5-4ead-960b-8291374d813c)
 
   
 
