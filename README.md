@@ -30,8 +30,11 @@ Currently hosted at [render](https://yal-anime-list.onrender.com/everything/) un
 
 ## Configuration
 
-Default settings for fetching titles configured with a minimum score of 60 (out of 100) and year 2020 onwards. GraphQL string query can be easily customized through different variety of params: https://docs.anilist.co/guide/graphql/
-The application settings can be configured through the `anilist.config.js` file. This includes API options such as request limits, results per page, filters for start date, media type, media format, minimum score, and sorting options.
+Default settings for fetching titles already pre-configured with a minimum score of 60 (out of 100) and year 2020 onwards.
+
+Application settings can be also configured through the `anilist.config.js` file. This includes API options such as request limits, results per page, filters for start date, media type, media format, minimum score, and sorting options.
+
+Other GraphQL string query params could also be altered/more added or removed. For full reference refer to this guide: https://docs.anilist.co/guide/graphql/
 
 ## Usage
 
