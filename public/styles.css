@@ -271,6 +271,20 @@ sl-icon-button {
   .year {
     flex-basis: 50%;
   }
+
+  .grid-wrapper {
+    justify-content: space-evenly;
+  }
+}
+
+@media (max-width: 1315px) {
+  body.ready {
+    padding: 0 0.5rem;
+  }
+
+  .right {
+    padding: var(--sl-spacing-medium) 0.5rem;
+  }
 }
 
 /* Result */
