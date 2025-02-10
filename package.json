@@ -16,7 +16,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "NODE_ENV=development node --watch app.js",
-    "prod": "NODE_ENV=production node app.js"
+    "prod": "NODE_ENV=production node app.js",
+    "prebuild": "NODE_ENV=production node ./database/initialize-database.js"
   },
   "keywords": [],
   "author": "",
