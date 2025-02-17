@@ -56,16 +56,22 @@ For full reference, see the [AniList GraphQL Guide](https://docs.anilist.co/guid
    
    Create a `.env` file in the root directory and add and define there your database link and server port.
 
-5. **Initialize the database**:
+5. **Initialize the database and fetch titles**:
    ```sh
    node database/initialize-database.js  # Fetches anime titles
-   npm run prod  # Starts the server
    ```
+   You might want to define your own filters in `anilist.config.js` file before fetching them.
 
 6. **Start the server**:
    ```sh
-   npm start
+   npm run dev
+   ```
+   
+   or
+   ```sh
+   npm run prod
    ```
 
-7. **Access the application**:
+8. **Access the application**:
+   
    Open your browser and navigate to `http://localhost:3000`.
