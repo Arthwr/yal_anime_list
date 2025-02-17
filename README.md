@@ -1,40 +1,39 @@
 # Anime Management WebApp
+Self-educational mini-project
 
-Anime management web application that retrieves data from AniList GraphQL API to store and manage anime titles for personal use. 
-Adapted only for screen sizes from 768px and higher, while for the best experience 2560px is recommended. 
+An anime management web application that retrieves data from the AniList GraphQL API to store and manage anime titles for personal use.  
+Designed for screen sizes of 768px and higher, with an optimal experience at 2560px. Author of this repo is too lazy to implement mobile version of it.
 
-- **Node.js**
-- **Express.js**
-- **PostgreSQL**
-- **Shoelace**: UI components library
-- **EJS**: Embedded JavaScript templating
-- **Shoelace custom web components**
-- **Helmet**
-- **Express-Rate-Limit**
+## Tech Stack  
+- **Node.js**  
+- **Express.js**  
+- **PostgreSQL**  
+- **EJS**  
+- **Shoelace** (Web Components)  
 
+## Features  
 
-# Features
+- **Data Fetching & Storage**: Retrieves anime information from the AniList API, stores it in a PostgreSQL database, and converts the data into a predefined format.  
+- **Database Management**: Creates tables and relationships for storing anime titles, genres, categories, and statuses.  
+- **Category Assignment**: Users can assign categories such as "Watching," "Completed," "Plan to Watch," etc., to each anime title.  
+- **Combinational Search**: Supports searching by name, genres, years, and release status.  
+- **Database Limitations**: Due to the free-tier limitations of Render hosting, the database is available for one month per deployment. However, data can be refetched anytime, though assigned categories will be lost.  
 
-- **Data Fetching and Storage**: Fetches anime information from the AniList API, loads it into a PostgreSQL database, and converts the data into a predefined format.
-- **Database Management**: Creates tables and relationships for storing anime titles, genres, categories, and statuses.
-- **Category Assignment**: Allows users to assign categories such as "Watching", "Completed", "Plan to Watch", etc., to each anime title.
-- **Combinational Search**: Supports combinational search by name query, genre (single or multiple), year (single or multiple), and status.
-- **Database Limitations**: Due to the free tier of Render hosting, the database is limited to a single month of use. However, the script can easily refetch titles, although assigned categories will be lost.
+## Preview  
 
-# Preview
-Currently hosted at [render](https://yal-anime-list.onrender.com/everything/) until 20th of March 2025. 
+Currently hosted on [Render](https://yal-anime-list.onrender.com/everything/) with DB access being available only until March 20, 2025.  
 
-![yal-front](https://github.com/user-attachments/assets/c393a910-0ff5-4ead-960b-8291374d813c)
+![yal-front](https://github.com/user-attachments/assets/c393a910-0ff5-4ead-960b-8291374d813c)  
 
-  
+## Configuration  
 
-## Configuration
+Default settings are pre-configured to fetch anime titles with a minimum score of 60 (out of 100) and from the year 2020 onwards.  
 
-Default settings for fetching titles already pre-configured with a minimum score of 60 (out of 100) and year 2020 onwards.
+Application settings can be modified in the `anilist.config.js` file. This includes:  
+- API options (request limits, results per page)  
+- Filters (start date, media type, media format, minimum score, sorting)  
 
-Application settings can be also configured through the `anilist.config.js` file. This includes API options such as request limits, results per page, filters for start date, media type, media format, minimum score, and sorting options.
-
-Other GraphQL string query params could also be altered/more added or removed. For full reference refer to this guide: https://docs.anilist.co/guide/graphql/
+Additional GraphQL query parameters can be added or modified. For full reference, see the [AniList GraphQL Guide](https://docs.anilist.co/guide/graphql/).  
 
 ## Usage
 
@@ -50,11 +49,12 @@ Other GraphQL string query params could also be altered/more added or removed. F
    ```
 
 3. **Set up environment variables**:
-   Create a `.env` file in the root directory and add your environment variables.
+   Create a `.env` file in the root directory and add and define your database link and server port.
 
 4. **Initialize the database**:
    ```sh
-   node database/initialize-database.js
+  node database/initialize-database.js  # Fetches anime titles
+  npm run prod  # Starts the server
    ```
 
 5. **Start the server**:
