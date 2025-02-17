@@ -2,7 +2,9 @@
 Self-educational mini-project
 
 An anime management web application that retrieves data from the AniList GraphQL API to store and manage anime titles for personal use.  
-Designed for screen sizes of 768px and higher, with an optimal experience at 2560px. Author of this repo is too lazy to implement mobile version of it.
+Designed for screen sizes of 768px and higher, with an optimal experience at 2560px. 
+
+Author of this repo is too lazy to implement mobile version of it.
 
 ## Tech Stack  
 - **Node.js**  
