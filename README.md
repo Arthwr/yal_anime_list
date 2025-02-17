@@ -35,7 +35,9 @@ Application settings can be modified in the `anilist.config.js` file. This inclu
 - API options (request limits, results per page)  
 - Filters (start date, media type, media format, minimum score, sorting)  
 
-Additional GraphQL query parameters can be added or modified. For full reference, see the [AniList GraphQL Guide](https://docs.anilist.co/guide/graphql/).  
+Additional GraphQL query parameters can be added or modified.
+
+For full reference, see the [AniList GraphQL Guide](https://docs.anilist.co/guide/graphql/).  
 
 ## Usage
 
